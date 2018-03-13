@@ -1,5 +1,7 @@
 {
   "name": "towers-defense",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "phaser": "^3.2.1"
+  }
 }
