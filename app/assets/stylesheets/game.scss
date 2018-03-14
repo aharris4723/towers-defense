@@ -1,12 +1,25 @@
 *{
 	padding: 0%;
 	margin: 0%;
+
+}
+body{
+	background-color: black;
+}
+#wrapper{
+	height:450px;
+	width:100%;
+	background-color:grey;
+	border-top: 5px solid black;
+	border-bottom:5px solid black;
+	background: url(background1.jpg);
+
 }
 #game-title{
 	text-align: center;
 	font-family: 'Audiowide', cursive;
-	color:yellow;
-	text-shadow: 2px 2px black;
+	color:red;
+	text-shadow: 2px 2px orange;
 	font-size:50pt;
 }
 #mycanvas{
@@ -16,7 +29,7 @@
 	margin-top: 40%;
 	margin-left: 400px;
 	margin-right: auto;
-	border: 5px solid black;
+	border: 2px solid black;
 	background-color: brown;
 }
 #grass{
@@ -27,7 +40,7 @@
 	margin-left: 400px;
 	margin-right: auto;
 	position: absolute;
-	top:65%;
+	top:60.5%;
 	left:.35%;
 	background-color: green;
 	height: 70px;
