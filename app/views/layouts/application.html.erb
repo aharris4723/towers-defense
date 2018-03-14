@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>TowersDefense</title>
+    <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,6 +11,7 @@
   </head>
 
   <body>
+   
     <nav>
       <ul>
         <li id="play"><%= link_to "Play", game_index_path %> </li>
@@ -22,6 +24,7 @@
         <% end %>
       </ul>
     </nav>
+    <h1 id="game-title">Tower defenders</h1>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

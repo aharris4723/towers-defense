@@ -1,9 +1,36 @@
-// Place all the styles related to the game controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
+*{
+	padding: 0%;
+	margin: 0%;
+}
+#game-title{
+	text-align: center;
+	font-family: 'Audiowide', cursive;
+	color:yellow;
+	text-shadow: 2px 2px black;
+	font-size:50pt;
+}
 #mycanvas{
-	background: url(grid.png);
-	background-size:contain;
+	background: url(dirt.jpg);
+	background-size:cover;
 	background-repeat: no-repeat;
+	margin-top: 40%;
+	margin-left: 400px;
+	margin-right: auto;
+	border: 5px solid black;
+	background-color: brown;
+}
+#grass{
+	background-image: url(grass.jpg);
+	background-size:cover;
+	;
+	/*margin-top: 50px;*/
+	margin-left: 400px;
+	margin-right: auto;
+	position: absolute;
+	top:65%;
+	left:.35%;
+	background-color: green;
+	height: 70px;
+	width: 500px;
+
 }
