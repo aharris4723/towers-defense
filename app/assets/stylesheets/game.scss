@@ -10,8 +10,8 @@ body{
 	height:450px;
 	width:100%;
 	background-color:grey;
-	border-top: 5px solid black;
-	border-bottom:5px solid black;
+	border-top: 5px solid orange;
+	border-bottom:5px solid orange;
 	background: url(background1.jpg);
 
 }
@@ -21,9 +21,10 @@ body{
 	color:red;
 	text-shadow: 2px 2px orange;
 	font-size:50pt;
+	 
 }
 #mycanvas{
-	background: url(dirt.jpg);
+	background-image: url(grass.jpg);
 	background-size:cover;
 	background-repeat: no-repeat;
 	margin-top: 40%;
@@ -31,12 +32,13 @@ body{
 	margin-right: auto;
 	border: 2px solid black;
 	background-color: brown;
+	box-shadow: 5px 5px 5px 5px black; 
 }
 #grass{
-	background-image: url(grass.jpg);
+	/*background-image: url(grass.jpg);
 	background-size:cover;
-	;
-	/*margin-top: 50px;*/
+	
+	
 	margin-left: 400px;
 	margin-right: auto;
 	position: absolute;
@@ -44,6 +46,6 @@ body{
 	left:.35%;
 	background-color: green;
 	height: 70px;
-	width: 500px;
+	width: 500px;*/
 
 }

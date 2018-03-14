@@ -17,7 +17,7 @@ ul{
 
 .navbar{
 	display: inline;
-    font-family: 'Monda', sans-serif;
+    font-family: 'Audiowide', cursive;
     text-decoration: none;
     position: absolute;
     top: 5%;
@@ -31,8 +31,9 @@ ul{
     border-radius: 25px;
     text-decoration: none;
     color: black;
-    background-color: white;
+    background-color: red;
     border: 2px solid black;
+    text-shadow: 1px 1px white;
 }
 
 .navbar_item:hover{
