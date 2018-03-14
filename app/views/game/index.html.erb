@@ -1,4 +1,21 @@
 <div style= "text-align: center; display: inline-block; width: 20vw">
-<canvas height="250px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
+<canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
 
+<img id="image" onload="draw()">
+<script>
+
+var canvas = document.getElementById('mycanvas');
+var context = canvas.getContext("2d");
+context.beginPath();          
+context.moveTo(1, 30);     
+context.lineTo(408, 30);
+context.lineTo(408, 200);
+context.lineTo(95, 200);        
+context.lineTo(95, 280);        
+context.stroke(); 
+var img = document.getElementById("image");
+function draw(){
+context.drawImage(img, 10,10);
+}
+</script>
 </div>
