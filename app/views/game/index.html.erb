@@ -1,7 +1,7 @@
 <div style= "text-align: center; display: inline-block; width: 20vw">
 <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
 
-<img id="image" onload="draw()">
+<img id="image">
 <script>
 
 var canvas = document.getElementById('mycanvas');
@@ -13,9 +13,30 @@ context.lineTo(408, 200);
 context.lineTo(95, 200);        
 context.lineTo(95, 280);        
 context.stroke(); 
-var img = document.getElementById("image");
-function draw(){
-context.drawImage(img, 10,10);
+context.closePath();
+var img = new Image();
+
+img.onload =  function(){
+var interval = setInterval(function() {
+        var x= -6;
+        var y=-16;
+      return function () {
+        if (x != 370 && y == -16){
+        context.drawImage(img, x, y, 80, 80);
+           x+=1;
+        }
+        if (x == 370) {
+        context.drawImage(img, x, y, 80, 80);
+            y += 1;
+        }
+        if (y == 152) {
+        context.drawImage(img, x, y, 80, 80);
+            x-=1;
+        }
+      };
+    }(), 1000/500);
 }
+
+img.src = "/assets/dawey.png";
 </script>
 </div>
