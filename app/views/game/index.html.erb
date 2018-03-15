@@ -4,44 +4,49 @@
 <img id="image" width="80", height="80" src="/assets/dawey.png">
 <script>
 
-var goblin = {name: "goblin", health: 3, locationx: -6, locationy: -16, image: document.getElementById("image")};
-var ogre = {name:ogre, health: 5, speedx: -6, speedy: -16};
-var wave = [goblin, goblin, goblin];
 
-class MainLoop{
-    constructor(wave){
-        this.wave = wave;
+
+class Goblin{
+    constructor(){
         this.canvas = document.getElementById('mycanvas');
         this.context = this.canvas.getContext("2d");
-        
+        this.health = 3;
+        this.x = -6;
+        this.y = -16;
+        this.speed =1;
+        this.image = document.getElementById("image");
+        this.width= 80;
+        this.height = 80;
     }
-    monsterloop(){
+    spawn(){
         var that = this;
         setInterval(function(){
                 that.context.beginPath();
                 that.context.clearRect(0,0,that.canvas.width , that.canvas.height);
-                for (let i = 0; i < that.wave.length; i++) {
-                    that.context.drawImage(that.wave[i].image, that.wave[i].locationx, that.wave[i].locationy, 80, 80); 
-                    if(that.wave[i].locationx != 370 && that.wave[i].locationy == -16){
-                        that.wave[i].locationx +=1;
+                that.context.drawImage(that.image, that.x, that.y, that.width, that.height); 
+                    if(that.x != 370 && that.y == -16){
+                        that.x += that.speed ;
                     }
-                     if(that.wave[i].locationx == 370 && that.wave[i].locationy < 152){
-                         that.wave[i].locationy += 1;
+                     if(that.x == 370 && that.y < 152){
+                         that.y += that.speed;
                     }
-                    if(that.wave[i].locationy == 152 && that.wave[i].locationx > 58){
-                        that.wave[i].locationx -= 1;
+                    if(that.y == 152 && that.x > 58){
+                        that.x -= that.speed;
                     }
-                    if(that.wave[i].locationx == 58 && that.wave[i].locationy!= -16 && that.wave[i].locationy <220){
-                        that.wave[i].locationy += 1;
+                    if(that.x == 58 && that.y!= -16 && that.y <220){
+                        that.y += that.speed;
                     }
-                    }
+                    
                 }, 1000/60);
         }
     
 }
 
-var wave1 = new MainLoop(wave);
-wave1.monsterloop();
+var wave = new Goblin();
+setInterval(function(){
+    wave.spawn()
+},2000)
+
 
 // img.src = "/assets/dawey.png";
 
