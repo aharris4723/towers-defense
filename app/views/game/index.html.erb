@@ -2,6 +2,10 @@
 
 
 <div id="wrapper">
+
+  
+    <div>
+
   <div style= "text-align: center; display: inline-block; width: 20vw">
 	  <div id='monster'>
 	  </div>
@@ -11,6 +15,7 @@
 	  </div>
 
       <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
+    
         <div id="tower1" class="draggable">
           <p> You can drag one element </p>
         </div>
@@ -22,7 +27,21 @@
 
   </div>
 
+
+    <div class="draggable" id="tower">place tower
+    </div>
+
 </div>
+
+<div id= 'directions'>
+    <h1 id="instructions-title">HOW TO PLAY</h1>
+    <p id="instructions">What is Lorem Ipsum?
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+Why do we use it?
+It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+
+
 
 
 
@@ -33,12 +52,22 @@
 
 <!-- <img id="image"> -->
 
+
 <img id="image" width="80", height="80" src="/assets/dawey.png">
+</p>
+</div>
+</div>
+
+
+
+<img id="image" width="80", height="80" src="/assets/dawey.png" style= "display:none">
+
 
 <button type="button" id="play_button" >Play Game</button>
 
 <script>
 
+// the information about goblin
 class Goblin{
     constructor(){
         this.canvas = document.getElementById('mycanvas');
@@ -46,7 +75,7 @@ class Goblin{
         this.health = 3;
         this.x = -6;
         this.y = -16;
-        this.speed =1;
+        this.speed =2;
         this.image = document.getElementById("image");
         this.width= 80;
         this.height = 80;
@@ -70,6 +99,7 @@ class Goblin{
     }
 }
 
+//the mainloop that runs the game
 class Game{
     constructor(){
         this.canvas = document.getElementById('mycanvas');
@@ -117,6 +147,13 @@ playButton.addEventListener('click', function(){
 
 // refreshes the game renders the game
 
+setInterval(function(){
+    mainloop.update();
+    mainloop.draw();
+}, 1000/30);
+
+
+
 
 
 
@@ -124,12 +161,9 @@ playButton.addEventListener('click', function(){
 
 </script>
 
-<div id= 'directions'>
-	<h1 id="instructions-title">HOW TO PLAY</h1>
-	<p id="instructions">What is Lorem Ipsum?
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
-Why do we use it?
-It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+
+
 
 </p>
+
