@@ -1,8 +1,19 @@
 
 
+
 <div id="wrapper">
+
   
     <div>
+
+  <div style= "text-align: center; display: inline-block; width: 20vw">
+	  <div id='monster'>
+	  </div>
+
+	  <div id='grass'>
+
+	  </div>
+
       <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
     <div class="draggable" id="tower">place tower
     </div>
@@ -23,6 +34,8 @@ It is a long established fact that a reader will be distracted by the readable c
 
 
 <img id="image" width="80", height="80" src="/assets/dawey.png" style= "display:none">
+
+<button type="button" id="play_button" >Play Game</button>
 
 <script>
 
@@ -85,16 +98,27 @@ class Game{
         }
     }
 }
-    
+
 var mainloop = new Game();
+
+var playButton = document.getElementById('play_button');
+
+playButton.addEventListener('click', function(){
+  setInterval(function(){
+      mainloop.addenemy(-6, -16);
+  },1000);
+  setInterval(function(){
+      mainloop.update();
+      mainloop.draw();
+  }, 1000/100);
+});
 
 
 // the spawner
-setInterval(function(){
-    mainloop.addenemy(-6, -16);
-},1000);
+
 
 // refreshes the game renders the game
+
 setInterval(function(){
     mainloop.update();
     mainloop.draw();
@@ -105,7 +129,13 @@ setInterval(function(){
 
 
 
+
+
 </script>
 
 
+
+
+
+</p>
 

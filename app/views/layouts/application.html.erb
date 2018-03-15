@@ -3,6 +3,7 @@
   <head>
     <title>TowersDefense</title>
     <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Black+Ops+One" rel="stylesheet">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -11,10 +12,10 @@
   </head>
 
   <body>
-   
+
     <nav>
       <ul class="navbar">
-        <li id="play" class="navbar_item"><%= link_to "Play", game_index_path %> </li>
+        <li id="play" class="navbar_item"><%= link_to "Play", game_index_path%> </li>
         <li class="navbar_item"><a href="#instructions">Info</a></li>
         <% if !user_signed_in? %>
         <li class="navbar_item"><%= link_to "Log In", '/'%></li>

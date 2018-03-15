@@ -25,28 +25,36 @@ body{
 	background-color:grey;
 	border-top: 5px solid orange;
 	border-bottom:12px solid orange;
-	background: url(background1.jpg);
+	background: url(background1.jpeg);
 	padding-bottom: 2.5%;
 	text-align: center;
 }
 #game-title{
 	margin-top:1%;
 	text-align: center;
-	font-family: 'Audiowide', cursive;
+	font-family: 'Black Ops One', cursive;
 	color:red;
 	text-shadow: 2px 2px orange;
-	font-size:72pt;
+	font-size:10vmax;
 	 
 }
 #mycanvas{
 	background-image: url('grass.jpg');
 	background-size:cover;
 	background-repeat: no-repeat;
+
 	// margin-top: 40%;
 	// margin-left: 350px;
 	// margin-right: auto;
 	// border: 2px solid black;
 	// background-color: brown;
+  
+	margin-top: 10vmax;
+	margin-left: 350px;
+	margin-right: auto;
+	border: 2px solid black;
+	background-color: brown;
+
 	box-shadow: 5px 5px 5px 5px black;
 	display: inline-block;	
 	
@@ -85,29 +93,40 @@ body{
 
 #directions{ 
 	width:100%;
-    height:300px; 
+    height:400px; 
+    background-image: url('background2.gif');
     background-attachment: fixed;
-    background-position: center;
+    background-position: cover;
     background-repeat: no-repeat;
     background-size: cover;
     background-color: black;
 }
 #instructions{
 	text-align: center;
-	color:white;
+	color:red;
 	font-family: 'Audiowide', cursive;
 	font-size: 15pt;
 	margin-top: 5%;
 	margin-left: 2%;
 	margin-right: 2%;
+	text-shadow: 2px 2px orange;
+	padding-bottom: 3vmax;
+	border-bottom: 5px solid orange;
+
 
 }
 #instructions-title{
 	margin-top: 3%;
 	text-align: center;
-	font-family: 'Audiowide', cursive;
+	font-family: 'Black Ops One', cursive;
 	color:red;
 	text-shadow: 2px 2px orange;
 	font-size:50pt;
+
+}
+#comments-section{
+	height: 500px;
+	width: 100%;
+	background-color: red;
 
 }
