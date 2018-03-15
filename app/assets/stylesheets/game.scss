@@ -6,8 +6,9 @@
 body{
 	background-color: black;
 
+
 }
-#monster{
+/*#monster{
 	height: 200px;
 	width: 200px;
 	background-position: center;
@@ -17,35 +18,38 @@ body{
 	background-image:url('turent2.jpg'); 
 	background-color: pink;
 	opacity: 0.8;
-}
+}*/
 #wrapper{
 	height:450px;
 	width:100%;
 	background-color:grey;
 	border-top: 5px solid orange;
-	border-bottom:5px solid orange;
+	border-bottom:12px solid orange;
 	background: url(background1.jpg);
+	padding-bottom: 2.5%;
 
 }
 #game-title{
+	margin-top:1%;
 	text-align: center;
 	font-family: 'Audiowide', cursive;
 	color:red;
 	text-shadow: 2px 2px orange;
-	font-size:50pt;
+	font-size:72pt;
 	 
 }
 #mycanvas{
 
-	background-image: url(grass.jpg);
+	background-image: url('grass.jpg');
 	background-size:cover;
 	background-repeat: no-repeat;
 	margin-top: 40%;
-	margin-left: 400px;
+	margin-left: 350px;
 	margin-right: auto;
 	border: 2px solid black;
 	background-color: brown;
-	box-shadow: 5px 5px 5px 5px black; 
+	box-shadow: 5px 5px 5px 5px black;
+
 }
 /*#grass{
 	background-image: url(grass.jpg);
@@ -68,3 +72,31 @@ body{
 
 }*/
 
+#directions{ 
+	width:100%;
+    height:300px; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: black;
+}
+#instructions{
+	text-align: center;
+	color:white;
+	font-family: 'Audiowide', cursive;
+	font-size: 15pt;
+	margin-top: 5%;
+	margin-left: 2%;
+	margin-right: 2%;
+
+}
+#instructions-title{
+	margin-top: 3%;
+	text-align: center;
+	font-family: 'Audiowide', cursive;
+	color:red;
+	text-shadow: 2px 2px orange;
+	font-size:50pt;
+
+}

@@ -20,8 +20,8 @@ ul{
     font-family: 'Audiowide', cursive;
     text-decoration: none;
     position: absolute;
-    top: 5%;
-    left:3%;
+    top:20%;
+    left:40%;
 }
 
 .navbar_item{
@@ -31,11 +31,11 @@ ul{
     border-radius: 25px;
     text-decoration: none;
     color: black;
-    background-color: red;
+    background-color: orange;
     border: 2px solid black;
     text-shadow: 1px 1px white;
 }
 
 .navbar_item:hover{
-    background-color: orange;
+    background-color: red;
 }
