@@ -91,6 +91,9 @@ body{
 	margin-left: 2%;
 	margin-right: 2%;
 	text-shadow: 2px 2px orange;
+	padding-bottom: 3vmax;
+	border-bottom: 5px solid orange;
+
 
 }
 #instructions-title{
@@ -100,5 +103,11 @@ body{
 	color:red;
 	text-shadow: 2px 2px orange;
 	font-size:50pt;
+
+}
+#comments-section{
+	height: 500px;
+	width: 100%;
+	background-color: red;
 
 }
