@@ -2,15 +2,20 @@
 
 
 <div id="wrapper">
+
+  
+    <div>
+
   <div style= "text-align: center; display: inline-block; width: 20vw">
 	  <div id='monster'>
 	  </div>
-	  
+
 	  <div id='grass'>
-	  
+
 	  </div>
 
       <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
+    
         <div id="tower1" class="draggable">
           <p> You can drag one element </p>
         </div>
@@ -22,8 +27,19 @@
 
   </div>
 
+
+    <div class="draggable" id="tower">place tower
+    </div>
+
 </div>
 
+<div id= 'directions'>
+    <h1 id="instructions-title">HOW TO PLAY</h1>
+    <p id="instructions">What is Lorem Ipsum?
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+Why do we use it?
+It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
 
 
 
@@ -32,12 +48,19 @@
 
 <!-- <img id="image"> -->
 
-<img id="image" width="80", height="80" src="/assets/dawey.png">
+</p>
+</div>
+</div>
+
+
+
+<img id="image" width="80", height="80" src="/assets/dawey.png" style= "display:none">
+
+<button type="button" id="play_button" >Play Game</button>
 
 <script>
 
-
-
+// the information about goblin
 class Goblin{
     constructor(){
         this.canvas = document.getElementById('mycanvas');
@@ -45,46 +68,82 @@ class Goblin{
         this.health = 3;
         this.x = -6;
         this.y = -16;
-        this.speed =1;
+        this.speed =2;
         this.image = document.getElementById("image");
         this.width= 80;
         this.height = 80;
     }
-    spawn(){
-        var that = this;
-        setInterval(function(){
-                that.context.beginPath();
-                that.context.clearRect(0,0,that.canvas.width , that.canvas.height);
-                that.context.drawImage(that.image, that.x, that.y, that.width, that.height); 
-                    if(that.x != 370 && that.y == -16){
-                        that.x += that.speed ;
-                    }
-                     if(that.x == 370 && that.y < 152){
-                         that.y += that.speed;
-                    }
-                    if(that.y == 152 && that.x > 58){
-                        that.x -= that.speed;
-                    }
-                    if(that.x == 58 && that.y!= -16 && that.y <220){
-                        that.y += that.speed;
-                    }
-                    
-                }, 1000/60);
+    draw(){
+        this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
+    }
+    update(){
+        if(this.x != 370 && this.y == -16){
+            this.x += this.speed ;
         }
-    
+        if(this.x == 370 && this.y < 152){
+            this.y += this.speed;
+        }
+        if(this.y == 152 && this.x > 58){
+            this.x -= this.speed;
+        }
+        if(this.x == 58 && this.y!= -16 && this.y < 225){
+            this.y += this.speed;
+        }
+    }
 }
 
+//the mainloop that runs the game
+class Game{
+    constructor(){
+        this.canvas = document.getElementById('mycanvas');
+        this.context = this.canvas.getContext("2d");
+        this.enemies = [];
 
-img.src = "/assets/dawey.png";
+    }
+
+    addenemy(x, y){
+        var goblin = new Goblin();
+        this.enemies.push(goblin);
+    }
+
+    draw(){
+        this.context.beginPath();
+        this.context.clearRect(0,0,this.canvas.width , this.canvas.height);
+        for (let i =0; i < this.enemies.length; i++){
+            this.enemies[i].draw();
+        }
+    }
+    update(){
+        for (var i = 0; i < this.enemies.length; i++) {
+            this.enemies[i].update();
+        }
+    }
+}
+
+var mainloop = new Game();
+
+var playButton = document.getElementById('play_button');
+
+playButton.addEventListener('click', function(){
+  setInterval(function(){
+      mainloop.addenemy(-6, -16);
+  },1000);
+  setInterval(function(){
+      mainloop.update();
+      mainloop.draw();
+  }, 1000/100);
+});
 
 
-var wave = new Goblin();
+// the spawner
+
+
+// refreshes the game renders the game
+
 setInterval(function(){
-    wave.spawn()
-},2000)
-
-
-// img.src = "/assets/dawey.png";
+    mainloop.update();
+    mainloop.draw();
+}, 1000/30);
 
 
 
@@ -92,57 +151,12 @@ setInterval(function(){
 
 
 
-// var canvas = document.getElementById('mycanvas');
-// var context = canvas.getContext("2d");
-
-// var img = new Image();
-// var x= -6;
-// var y=-16;
-
-// function enemy(){
-//   var interval = setInterval(function() {
-//         return function () {
-//         context.clearRect(0,0,canvas.width,canvas.height);
-//         if (x < 370 && y == -16){
-//         context.drawImage(img, x, y, 80, 80);
-//              x+=1;
-//         }
-//         if (x == 370 && y < 152) {
-//         context.drawImage(img, x, y, 80, 80);
-//             y += 1;
-//         }
-//         if (y == 152 && x > 58) {
-//         context.drawImage(img, x, y, 80, 80);
-//             x-=1;
-//         }
-//         if( x == 58 && y != -16 && y <= 220){
-//             context.drawImage(img, x, y, 80, 80);
-//             y+=1;
-//         }
-    
-//       };
-//     }(), 1000/60);
-    
-// }
-
-// function wave1(){
-//     enemy();
-//     enemy();
-//     enemy();
-// }
-
-// wave1();
 
 </script>
 
-<div id= 'directions'>
-	<h1 id="instructions-title">HOW TO PLAY</h1>
-	<p id="instructions">What is Lorem Ipsum?
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
-Why do we use it?
-It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+
+
 
 </p>
-
 
