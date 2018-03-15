@@ -1,0 +1,41 @@
+li a{
+    text-decoration: none; 
+    color: black; 
+}
+
+a {
+    color: blue;
+}
+
+ul{
+    list-style-type: none;
+    text-align: center;
+    display: inline;
+}
+
+
+
+.navbar{
+	display: inline;
+    font-family: 'Audiowide', cursive;
+    text-decoration: none;
+    position: absolute;
+    top:20%;
+    left:40%;
+}
+
+.navbar_item{
+    display: inline;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: black;
+    background-color: orange;
+    border: 2px solid black;
+    text-shadow: 1px 1px white;
+}
+
+.navbar_item:hover{
+    background-color: red;
+}
