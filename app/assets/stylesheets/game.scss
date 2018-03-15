@@ -25,14 +25,14 @@ body{
 	background-color:grey;
 	border-top: 5px solid orange;
 	border-bottom:12px solid orange;
-	background: url(background1.jpg);
+	background: url(background1.jpeg);
 	padding-bottom: 2.5%;
 
 }
 #game-title{
 	margin-top:1%;
 	text-align: center;
-	font-family: 'Audiowide', cursive;
+	font-family: 'Black Ops One', cursive;
 	color:red;
 	text-shadow: 2px 2px orange;
 	font-size:72pt;
@@ -74,27 +74,29 @@ body{
 
 #directions{ 
 	width:100%;
-    height:300px; 
+    height:400px; 
+    background-image: url('background2.gif');
     background-attachment: fixed;
-    background-position: center;
+    background-position: cover;
     background-repeat: no-repeat;
     background-size: cover;
     background-color: black;
 }
 #instructions{
 	text-align: center;
-	color:white;
+	color:red;
 	font-family: 'Audiowide', cursive;
 	font-size: 15pt;
 	margin-top: 5%;
 	margin-left: 2%;
 	margin-right: 2%;
+	text-shadow: 2px 2px orange;
 
 }
 #instructions-title{
 	margin-top: 3%;
 	text-align: center;
-	font-family: 'Audiowide', cursive;
+	font-family: 'Black Ops One', cursive;
 	color:red;
 	text-shadow: 2px 2px orange;
 	font-size:50pt;
