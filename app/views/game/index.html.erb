@@ -16,17 +16,9 @@
 </div>
 
 
-
-<!-- <div style= "text-align: center; display: inline-block; width: 20vw"> -->
-<!-- <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas> -->
-
-<!-- <img id="image"> -->
-
 <img id="image" width="80", height="80" src="/assets/dawey.png">
 
 <script>
-
-
 
 class Goblin{
     constructor(){
@@ -40,88 +32,70 @@ class Goblin{
         this.width= 80;
         this.height = 80;
     }
-    spawn(){
-        var that = this;
-        setInterval(function(){
-                that.context.beginPath();
-                that.context.clearRect(0,0,that.canvas.width , that.canvas.height);
-                that.context.drawImage(that.image, that.x, that.y, that.width, that.height); 
-                    if(that.x != 370 && that.y == -16){
-                        that.x += that.speed ;
-                    }
-                     if(that.x == 370 && that.y < 152){
-                         that.y += that.speed;
-                    }
-                    if(that.y == 152 && that.x > 58){
-                        that.x -= that.speed;
-                    }
-                    if(that.x == 58 && that.y!= -16 && that.y <220){
-                        that.y += that.speed;
-                    }
-                    
-                }, 1000/60);
+    draw(){
+        this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
+    }
+    update(){
+        if(this.x != 370 && this.y == -16){
+            this.x += this.speed ;
         }
-    
+        if(this.x == 370 && this.y < 152){
+            this.y += this.speed;
+        }
+        if(this.y == 152 && this.x > 58){
+            this.x -= this.speed;
+        }
+        if(this.x == 58 && this.y!= -16 && this.y < 225){
+            this.y += this.speed;
+        }
+    }
 }
 
+class Game{
+    constructor(){
+        this.canvas = document.getElementById('mycanvas');
+        this.context = this.canvas.getContext("2d");
+        this.enemies = [];
 
-img.src = "/assets/dawey.png";
+    }
+
+    addenemy(x, y){
+        var goblin = new Goblin();
+        this.enemies.push(goblin);
+    }
+
+    draw(){
+        this.context.beginPath();
+        this.context.clearRect(0,0,this.canvas.width , this.canvas.height);
+        for (let i =0; i < this.enemies.length; i++){
+            this.enemies[i].draw();
+        }
+    }
+    update(){
+        for (var i = 0; i < this.enemies.length; i++) {
+            this.enemies[i].update();
+        }
+    }
+}
+    
+var mainloop = new Game();
 
 
-var wave = new Goblin();
+// the spawner
 setInterval(function(){
-    wave.spawn()
-},2000)
+    mainloop.addenemy(-6, -16);
+},1000);
+
+// refreshes the game renders the game
+setInterval(function(){
+    mainloop.update();
+    mainloop.draw();
+}, 1000/100);
 
 
-// img.src = "/assets/dawey.png";
 
 
 
-
-
-
-
-// var canvas = document.getElementById('mycanvas');
-// var context = canvas.getContext("2d");
-
-// var img = new Image();
-// var x= -6;
-// var y=-16;
-
-// function enemy(){
-//   var interval = setInterval(function() {
-//         return function () {
-//         context.clearRect(0,0,canvas.width,canvas.height);
-//         if (x < 370 && y == -16){
-//         context.drawImage(img, x, y, 80, 80);
-//              x+=1;
-//         }
-//         if (x == 370 && y < 152) {
-//         context.drawImage(img, x, y, 80, 80);
-//             y += 1;
-//         }
-//         if (y == 152 && x > 58) {
-//         context.drawImage(img, x, y, 80, 80);
-//             x-=1;
-//         }
-//         if( x == 58 && y != -16 && y <= 220){
-//             context.drawImage(img, x, y, 80, 80);
-//             y+=1;
-//         }
-    
-//       };
-//     }(), 1000/60);
-    
-// }
-
-// function wave1(){
-//     enemy();
-//     enemy();
-//     enemy();
-// }
-
-// wave1();
 
 </script>
 
