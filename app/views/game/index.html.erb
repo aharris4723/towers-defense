@@ -21,42 +21,107 @@
 <!-- <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas> -->
 
 <!-- <img id="image"> -->
+
+<img id="image" width="80", height="80" src="/assets/dawey.png">
+
 <script>
 
-var canvas = document.getElementById('mycanvas');
-var context = canvas.getContext("2d");
-context.beginPath();          
-context.moveTo(1, 30);     
-context.lineTo(408, 30);
-context.lineTo(408, 200);
-context.lineTo(95, 200);        
-context.lineTo(95, 280);        
-context.stroke(); 
-context.closePath();
-var img = new Image();
 
-img.onload =  function(){
-var interval = setInterval(function() {
-        var x= -6;
-        var y=-16;
-      return function () {
-        if (x != 370 && y == -16){
-        context.drawImage(img, x, y, 80, 80);
-           x+=1;
+
+class Goblin{
+    constructor(){
+        this.canvas = document.getElementById('mycanvas');
+        this.context = this.canvas.getContext("2d");
+        this.health = 3;
+        this.x = -6;
+        this.y = -16;
+        this.speed =1;
+        this.image = document.getElementById("image");
+        this.width= 80;
+        this.height = 80;
+    }
+    spawn(){
+        var that = this;
+        setInterval(function(){
+                that.context.beginPath();
+                that.context.clearRect(0,0,that.canvas.width , that.canvas.height);
+                that.context.drawImage(that.image, that.x, that.y, that.width, that.height); 
+                    if(that.x != 370 && that.y == -16){
+                        that.x += that.speed ;
+                    }
+                     if(that.x == 370 && that.y < 152){
+                         that.y += that.speed;
+                    }
+                    if(that.y == 152 && that.x > 58){
+                        that.x -= that.speed;
+                    }
+                    if(that.x == 58 && that.y!= -16 && that.y <220){
+                        that.y += that.speed;
+                    }
+                    
+                }, 1000/60);
         }
-        if (x == 370) {
-        context.drawImage(img, x, y, 80, 80);
-            y += 1;
-        }
-        if (y == 152) {
-        context.drawImage(img, x, y, 80, 80);
-            x-=1;
-        }
-      };
-    }(), 1000/500);
+    
 }
 
+
 img.src = "/assets/dawey.png";
+
+
+var wave = new Goblin();
+setInterval(function(){
+    wave.spawn()
+},2000)
+
+
+// img.src = "/assets/dawey.png";
+
+
+
+
+
+
+
+// var canvas = document.getElementById('mycanvas');
+// var context = canvas.getContext("2d");
+
+// var img = new Image();
+// var x= -6;
+// var y=-16;
+
+// function enemy(){
+//   var interval = setInterval(function() {
+//         return function () {
+//         context.clearRect(0,0,canvas.width,canvas.height);
+//         if (x < 370 && y == -16){
+//         context.drawImage(img, x, y, 80, 80);
+//              x+=1;
+//         }
+//         if (x == 370 && y < 152) {
+//         context.drawImage(img, x, y, 80, 80);
+//             y += 1;
+//         }
+//         if (y == 152 && x > 58) {
+//         context.drawImage(img, x, y, 80, 80);
+//             x-=1;
+//         }
+//         if( x == 58 && y != -16 && y <= 220){
+//             context.drawImage(img, x, y, 80, 80);
+//             y+=1;
+//         }
+    
+//       };
+//     }(), 1000/60);
+    
+// }
+
+// function wave1(){
+//     enemy();
+//     enemy();
+//     enemy();
+// }
+
+// wave1();
 
 </script>
 
