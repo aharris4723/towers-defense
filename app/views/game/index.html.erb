@@ -1,42 +1,95 @@
 <div style= "text-align: center; display: inline-block; width: 20vw">
 <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
 
-<img id="image">
+<img id="image" width="80", height="80" src="/assets/dawey.png">
 <script>
 
-var canvas = document.getElementById('mycanvas');
-var context = canvas.getContext("2d");
-context.beginPath();          
-context.moveTo(1, 30);     
-context.lineTo(408, 30);
-context.lineTo(408, 200);
-context.lineTo(95, 200);        
-context.lineTo(95, 280);        
-context.stroke(); 
-context.closePath();
-var img = new Image();
+var goblin = {name: "goblin", health: 3, locationx: -6, locationy: -16, image: document.getElementById("image")};
+var ogre = {name:ogre, health: 5, speedx: -6, speedy: -16};
+var wave = [goblin, goblin, goblin];
 
-img.onload =  function(){
-var interval = setInterval(function() {
-        var x= -6;
-        var y=-16;
-      return function () {
-        if (x != 370 && y == -16){
-        context.drawImage(img, x, y, 80, 80);
-           x+=1;
+class MainLoop{
+    constructor(wave){
+        this.wave = wave;
+        this.canvas = document.getElementById('mycanvas');
+        this.context = this.canvas.getContext("2d");
+        
+    }
+    monsterloop(){
+        var that = this;
+        setInterval(function(){
+                that.context.beginPath();
+                that.context.clearRect(0,0,that.canvas.width , that.canvas.height);
+                for (let i = 0; i < that.wave.length; i++) {
+                    that.context.drawImage(that.wave[i].image, that.wave[i].locationx, that.wave[i].locationy, 80, 80); 
+                    if(that.wave[i].locationx != 370 && that.wave[i].locationy == -16){
+                        that.wave[i].locationx +=1;
+                    }
+                     if(that.wave[i].locationx == 370 && that.wave[i].locationy < 152){
+                         that.wave[i].locationy += 1;
+                    }
+                    if(that.wave[i].locationy == 152 && that.wave[i].locationx > 58){
+                        that.wave[i].locationx -= 1;
+                    }
+                    if(that.wave[i].locationx == 58 && that.wave[i].locationy!= -16 && that.wave[i].locationy <220){
+                        that.wave[i].locationy += 1;
+                    }
+                    }
+                }, 1000/60);
         }
-        if (x == 370) {
-        context.drawImage(img, x, y, 80, 80);
-            y += 1;
-        }
-        if (y == 152) {
-        context.drawImage(img, x, y, 80, 80);
-            x-=1;
-        }
-      };
-    }(), 1000/500);
+    
 }
 
-img.src = "/assets/dawey.png";
+var wave1 = new MainLoop(wave);
+wave1.monsterloop();
+
+// img.src = "/assets/dawey.png";
+
+
+
+
+
+
+
+// var canvas = document.getElementById('mycanvas');
+// var context = canvas.getContext("2d");
+
+// var img = new Image();
+// var x= -6;
+// var y=-16;
+
+// function enemy(){
+//   var interval = setInterval(function() {
+//         return function () {
+//         context.clearRect(0,0,canvas.width,canvas.height);
+//         if (x < 370 && y == -16){
+//         context.drawImage(img, x, y, 80, 80);
+//              x+=1;
+//         }
+//         if (x == 370 && y < 152) {
+//         context.drawImage(img, x, y, 80, 80);
+//             y += 1;
+//         }
+//         if (y == 152 && x > 58) {
+//         context.drawImage(img, x, y, 80, 80);
+//             x-=1;
+//         }
+//         if( x == 58 && y != -16 && y <= 220){
+//             context.drawImage(img, x, y, 80, 80);
+//             y+=1;
+//         }
+    
+//       };
+//     }(), 1000/60);
+    
+// }
+
+// function wave1(){
+//     enemy();
+//     enemy();
+//     enemy();
+// }
+
+// wave1();
 </script>
 </div>
