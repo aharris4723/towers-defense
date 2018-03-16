@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
 def index
-		@comments =Comment.all
+		@comments = Comment.all
 
 	end
 
@@ -11,11 +11,14 @@ def index
 	end
 
 	def create
+		user = User.find_by_id(current_user.id)
 		@comment = Comment.new(comment_params)
+		@comment.user_id = user.id
 		if @comment.save
-			redirect_back(fallback_location: root_path)
+			# redirect_back(fallback_location: comments_path)
+			redirect_to "/comments"
 		else
-			redirect_back(fallback_location: root_path)
+			redirect_back(fallback_location: comments_path)
 		end
 	end
 
