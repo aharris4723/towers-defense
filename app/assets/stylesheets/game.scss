@@ -42,19 +42,13 @@ body{
 	background-image: url('grass.jpg');
 	background-size:cover;
 	background-repeat: no-repeat;
-
-    margin-top: 40%;
-    margin-left: 350px;
-    margin-right: auto;
     border: 2px solid black;
 	background-color: brown;
-  
-	margin-top: 10vmax;
-	margin-left: 350px;
+    margin-top: 10vmax;
+	margin-left: auto;
 	margin-right: auto;
 	border: 2px solid black;
 	background-color: brown;
-
 	box-shadow: 5px 5px 5px 5px black;
 	display: inline-block;	
 	
@@ -125,19 +119,3 @@ body{
 
 }
 
-#tower1{
-	height: 100px;
-	width: 100px;
-	border-radius: 50%;
-	border: 2px solid black;
-	background-color:pink;
-	display: inline-block;
-}
-#tower2{
-	height: 100px;
-	width: 100px;
-	border-radius: 50%;
-	border: 2px solid black;
-	display: inline-block;
-	background-color:yellow;
-}
