@@ -5,11 +5,12 @@
 	text-align: center;
 	font-family: 'Black Ops One', cursive;
 	color:red;
-	text-shadow: 5px 5px black;
+	text-shadow: 10px 10px 10px black;
 	font-size:6vmax;
 	background-color: red;
 }
 #comment-wrapper{
+	padding-top: 2%;
 	margin-top:1%;
 	text-align: center;
 	font-family: 'Black Ops One', cursive;
@@ -17,22 +18,26 @@
 	text-shadow: 5px 5px orange;
 	background-color:red;
 
+
 }
 #comments{
 	text-align: center;
-	font-family: 'Black Ops One', cursive;
-	text-shadow: 5px 5px orange;
+    font-family: 'Audiowide', cursive;
+	text-shadow: 2px 2px black;
 	font-size: 20pt;
 	margin-top: 5%;
 	margin-left: auto;
 	margin-right:auto;
 	height: 50px;
-	width: 50%;
+	width: 30%;
 	box-shadow: 5px 5px 5px 5px black;
+	color:orange;
 
 }
 #comments-section{
 	height: 100%;
 	width: 100%;
 	margin: 0 auto;
+	background-color: red;
+	border-bottom: 10px solid black;
 }
