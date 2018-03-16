@@ -73,13 +73,13 @@ class Goblin{
     constructor(){
         this.canvas = document.getElementById('mycanvas');
         this.context = this.canvas.getContext("2d");
-        this.health = 3;
-        this.x = -6;
-        this.y = -16;
-        this.speed =2;
+        this.health = 3.0;
+        this.x = -6.0;
+        this.y = -16.0;
+        this.speed =2.0;
         this.image = document.getElementById("image");
-        this.width= 80;
-        this.height = 80;
+        this.width= 80.0;
+        this.height = 80.0;
     }
     draw(){
         this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -104,15 +104,15 @@ class Tower{
   constructor(x, y) {
     this.canvas = document.getElementById('mycanvas');
     this.context = this.canvas.getContext("2d");
-    this.damage = 1;
+    this.damage = 1.0;
     this.towerImage = document.getElementById('tower_image');
-    this.width = 45;
-    this.height = 45;
+    this.width = 45.0;
+    this.height = 45.0;
     this.x = x;
     this.y = y;
-    this.xcord = x - 25;
-    this.ycord = y - 25;
-    this.range = 50;
+    this.xcord = x - 25.0;
+    this.ycord = y - 25.0;
+    this.range = 40.0;
     this.target = null;
    
   }
@@ -124,10 +124,13 @@ class Tower{
       this.target = null;
     }
     for (var i = 0; i < mainloop.enemies.length; i++) {
-      var distance2 = (mainloop.enemies[i].x-this.x)*(mainloop.enemies[i].x-this.x)+ (mainloop.enemies[i].y-this.y)*(mainloop.enemies[i].y-this.y);
+      var distance2 = ((mainloop.enemies[i].x-this.x)*(mainloop.enemies[i].x-this.x)) + ((mainloop.enemies[i].y-this.y)*(mainloop.enemies[i].y-this.y));
+      console.log(distance2, this.range *this.range);
        if(distance2 < (this.range * this.range)){
         this.target = mainloop.enemies[i];
-        return;
+      } 
+      if(distance2 > (this.range * this.range)){
+        this.target = null;
       }
     }
   }
@@ -144,8 +147,9 @@ class Projectile{
     }
     draw(){
       this.content.moveTo(this.x, this.y);
-      this.content.lineTo(this.target.x+40, this.target.y+40);
+      this.content.lineTo(this.target.x+40.0, this.target.y+40.0);
       this.content.stroke();
+      console.log("i shoot");
     }
 }
 // the mainloop that runs the game
@@ -181,7 +185,10 @@ class Game{
            this.towers[i].drawTower();
         }
         for (let i =0; i< this.projectiles.length; i++) {
+          if (this.projectiles[i] != null){
           this.projectiles[i].draw();
+          this.projectiles[i] = null;
+          } 
         }
     }
     update(){
@@ -203,8 +210,8 @@ var rect;
 
 playButton.addEventListener('click', function(){
 
-  setInterval(function(){
-      mainloop.addenemy(-6, -16);
+  setTimeout(function(){
+      mainloop.addenemy();
   },2000);
   setInterval(function(){
     for (var i = 0; i < mainloop.towers.length; i++) {
@@ -212,7 +219,7 @@ playButton.addEventListener('click', function(){
         mainloop.addProjectile(mainloop.towers[i].x, mainloop.towers[i].y, mainloop.towers[i].target, mainloop.towers[i].damage)
       }
     }
-  },1000/30);
+  },1000/1);
   setInterval(function(){
       mainloop.update();
       mainloop.draw();
@@ -245,6 +252,8 @@ document.addEventListener('dragend', function(event) {
   canvas = document.getElementById('mycanvas');
   rect = canvas.getBoundingClientRect();
   mainloop.addTower((event.clientX) - rect.left, (event.clientY) - rect.top);
+  console.log(event.clientX);
+  console.log(event.clientY);
 })
 
 
