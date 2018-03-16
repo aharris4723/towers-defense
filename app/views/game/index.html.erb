@@ -22,9 +22,10 @@
   </div>
 
 
-    <div class="draggable", draggable="true" >
+    <div class="draggable">
+        <div draggable="true">
         <img id="tower_image" width="50", height="50" src="/assets/archer.png">
-
+        </div>
     </div>
 
 </div>
@@ -101,14 +102,30 @@ class Tower {
     this.towerImage = document.getElementById('tower_image');
     this.width = 45;
     this.height = 45;
-    this.xcord = x;
-    this.ycord = y;
+    this.xcord = x - 25;
+    this.ycord = y - 25;
+    this.range = 240;
   }
   drawTower(){
     this.context.drawImage(this.towerImage, this.xcord, this.ycord, this.width, this.height);
   }
 }
 
+class Projectile{
+    constructor(x, y, target, hurt){
+      var canvas =document.getElementById("mycanvas");
+      var content = canvas.getContext("2d");
+        this.collection = [];
+        this.x = x;
+        this.y = y;
+        this.target = target;
+        this.hurt = hurt;
+        this.range = 240;
+    }
+    draw(){
+
+    }
+}
 // the mainloop that runs the game
 class Game{
     constructor(){
@@ -186,7 +203,7 @@ content.stroke();
 document.addEventListener('dragend', function(event) {
   canvas = document.getElementById('mycanvas');
   rect = canvas.getBoundingClientRect();
-  mainloop.addTower((event.clientX-23) - rect.left, (event.clientY-23) - rect.top);
+  mainloop.addTower((event.clientX) - rect.left, (event.clientY) - rect.top);
 })
 
 
