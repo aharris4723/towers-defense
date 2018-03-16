@@ -11,18 +11,20 @@
 
       <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
 
-        <div id="tower1" class="draggable" draggable="true" ondragend="createTower()">
+        <div id="tower1" class="draggable" >
           <p> You can drag one element </p>
         </div>
 
-      <div id="tower2" class="draggable" draggable="true" ondragend="createTower()">
+      <div id="tower2" class="draggable" draggable="true">
         <p> with each pointer </p>
       </div>
 
   </div>
 
 
-    <div class="draggable" id="tower", draggable="true" ondragend="createTower()">place tower
+    <div class="draggable", draggable="true" >
+        <img id="tower_image" width="50", height="50" src="/assets/archer.png">
+
     </div>
 
 </div>
@@ -53,7 +55,7 @@ It is a long established fact that a reader will be distracted by the readable c
 </div>
 
 <img id="image" width="80", height="80" src="/assets/dawey.png" style= "display:none">
-<img id="tower_image" width="100", height="100" src="/assets/bullet.jpeg" style= "display:none">
+<img id="tower_image" width="50", height="50" src="/assets/archer.png" style= "display:none">
 
 
 <button type="button" id="play_button" >Play Game</button>
@@ -97,15 +99,13 @@ class Tower {
     this.context = this.canvas.getContext("2d");
     this.damage = 1;
     this.towerImage = document.getElementById('tower_image');
-    this.width = 100;
-    this.height = 100;
+    this.width = 45;
+    this.height = 45;
     this.xcord = x;
     this.ycord = y;
   }
   drawTower(){
     this.context.drawImage(this.towerImage, this.xcord, this.ycord, this.width, this.height);
-  }
-  update(){
   }
 }
 
@@ -115,7 +115,7 @@ class Game{
         this.canvas = document.getElementById('mycanvas');
         this.context = this.canvas.getContext("2d");
         this.enemies = [];
-        this.towers = []
+        this.towers = [];
 
     }
 
@@ -124,7 +124,7 @@ class Game{
         this.enemies.push(goblin);
     }
     addTower(xcord, ycord){
-      var tower = new Tower();
+      var tower = new Tower(xcord, ycord);
       this.towers.push(tower);
     }
     draw(){
@@ -133,16 +133,13 @@ class Game{
         for (let i =0; i < this.enemies.length; i++){
             this.enemies[i].draw();
         }
-        for (var i = 0; i < this.towers.length; i++) {
+        for (let i = 0; i < this.towers.length; i++) {
            this.towers[i].drawTower();
         }
     }
     update(){
         for (var i = 0; i < this.enemies.length; i++) {
             this.enemies[i].update();
-        }
-        for (var i = 0; i < this.towers.length; i++) {
-           this.towers[i].update();
         }
     }
 }
@@ -189,15 +186,10 @@ content.stroke();
 document.addEventListener('dragend', function(event) {
   canvas = document.getElementById('mycanvas');
   rect = canvas.getBoundingClientRect();
-  var tower = new Tower(event.clientX - rect.left, event.clientY - rect.top);
-  tower.xcord = event.clientX - rect.left;
-  tower.ycord = event.clientY - rect.top;
-  tower.drawTower();
+  mainloop.addTower((event.clientX-23) - rect.left, (event.clientY-23) - rect.top);
 })
 
-function createTower() {
-  mainloop.addTower(xcord, ycord);
-}
+
 
 </script>
 
