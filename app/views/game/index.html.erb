@@ -59,7 +59,6 @@ It is a long established fact that a reader will be distracted by the readable c
 <button type="button" id="play_button" >Play Game</button>
 
 <script>
-
 // the information about goblin
 class Goblin{
     constructor(){
@@ -131,6 +130,22 @@ playButton.addEventListener('click', function(){
   setInterval(function(){
       mainloop.update();
       mainloop.draw();
+      var canvas =document.getElementById("mycanvas");
+var content = canvas.getContext("2d");
+content.beginPath();
+content.moveTo(0,10);
+content.lineTo(420,10);
+content.lineTo(420,215);
+content.lineTo(110,215);
+content.lineTo(110, 280);
+content.stroke();
+content.beginPath();
+content.moveTo(0,45);
+content.lineTo(390,45);
+content.lineTo(390,176);
+content.lineTo(80,176);
+content.lineTo(80,280);
+content.stroke();
   }, 1000/100);
 });
 
@@ -140,10 +155,11 @@ playButton.addEventListener('click', function(){
 
 // refreshes the game renders the game
 
-setInterval(function(){
-    mainloop.update();
-    mainloop.draw();
-}, 1000/30);
+// setInterval(function(){
+//     mainloop.update();
+//     mainloop.draw();
+// }, 1000/30);
+
 
 
 
