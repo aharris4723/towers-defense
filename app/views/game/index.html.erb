@@ -7,11 +7,11 @@
     <div>
 
   <div style= "text-align: center; display: inline-block; width: 20vw, width: 100%;">
-	  
+
 
       <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
-
-        <div id="tower1" class="draggable" >
+    
+        <div id="tower1" class="draggable">
           <p> You can drag one element </p>
         </div>
 
@@ -19,16 +19,29 @@
         <p> with each pointer </p>
       </div>
 
+
   </div>
-
-
+      
     <div class="draggable">
         <div draggable="true">
         <img id="tower_image" width="50", height="50" src="/assets/archer.png">
         </div>
+
+
+    <div class="draggable">
+      <div class="drag_select" draggable="true"></div>
+
     </div>
 
 </div>
+<button id="start" class="button">start</button>
+    <div id="pauseButton"></div>
+    <button id="pause" class="button">pause</button>
+ <audio id="songs" >
+        <source src="audio/themesong.mp3">
+        
+        
+    </audio>
 
 <div id= 'directions'>
     <h1 id="instructions-title">HOW TO PLAY</h1>
@@ -104,7 +117,10 @@ class Tower {
     this.height = 45;
     this.xcord = x - 25;
     this.ycord = y - 25;
+
     this.range = 240;
+
+
   }
   drawTower(){
     this.context.drawImage(this.towerImage, this.xcord, this.ycord, this.width, this.height);
@@ -209,9 +225,3 @@ document.addEventListener('dragend', function(event) {
 
 
 </script>
-
-
-
-
-
-
