@@ -3,27 +3,26 @@
 
 <div id="wrapper">
 
-  
+
     <div>
 
   <div style= "text-align: center; display: inline-block; width: 20vw, width: 100%;">
 	  
 
       <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
-    
-        <div id="tower1" class="draggable">
+
+        <div id="tower1" class="draggable" draggable="true" ondragend="createTower()">
           <p> You can drag one element </p>
         </div>
-      
-      <div id="tower2" class="draggable">
+
+      <div id="tower2" class="draggable" draggable="true" ondragend="createTower()">
         <p> with each pointer </p>
       </div>
-  
 
   </div>
 
 
-    <div class="draggable" id="tower">place tower
+    <div class="draggable" id="tower", draggable="true" ondragend="createTower()">place tower
     </div>
 
 </div>
@@ -53,15 +52,13 @@ It is a long established fact that a reader will be distracted by the readable c
 </div>
 </div>
 
-
-
 <img id="image" width="80", height="80" src="/assets/dawey.png" style= "display:none">
+<img id="tower_image" width="100", height="100" src="/assets/bullet.jpeg" style= "display:none">
 
 
 <button type="button" id="play_button" >Play Game</button>
 
 <script>
-
 // the information about goblin
 class Goblin{
     constructor(){
@@ -94,12 +91,31 @@ class Goblin{
     }
 }
 
-//the mainloop that runs the game
+class Tower {
+  constructor(x, y) {
+    this.canvas = document.getElementById('mycanvas');
+    this.context = this.canvas.getContext("2d");
+    this.damage = 1;
+    this.towerImage = document.getElementById('tower_image');
+    this.width = 100;
+    this.height = 100;
+    this.xcord = x;
+    this.ycord = y;
+  }
+  drawTower(){
+    this.context.drawImage(this.towerImage, this.xcord, this.ycord, this.width, this.height);
+  }
+  update(){
+  }
+}
+
+// the mainloop that runs the game
 class Game{
     constructor(){
         this.canvas = document.getElementById('mycanvas');
         this.context = this.canvas.getContext("2d");
         this.enemies = [];
+        this.towers = []
 
     }
 
@@ -107,17 +123,26 @@ class Game{
         var goblin = new Goblin();
         this.enemies.push(goblin);
     }
-
+    addTower(xcord, ycord){
+      var tower = new Tower();
+      this.towers.push(tower);
+    }
     draw(){
         this.context.beginPath();
         this.context.clearRect(0,0,this.canvas.width , this.canvas.height);
         for (let i =0; i < this.enemies.length; i++){
             this.enemies[i].draw();
         }
+        for (var i = 0; i < this.towers.length; i++) {
+           this.towers[i].drawTower();
+        }
     }
     update(){
         for (var i = 0; i < this.enemies.length; i++) {
             this.enemies[i].update();
+        }
+        for (var i = 0; i < this.towers.length; i++) {
+           this.towers[i].update();
         }
     }
 }
@@ -125,14 +150,33 @@ class Game{
 var mainloop = new Game();
 
 var playButton = document.getElementById('play_button');
+var xcord;
+var ycord;
+var rect;
 
 playButton.addEventListener('click', function(){
   setInterval(function(){
       mainloop.addenemy(-6, -16);
-  },1000);
+  },2000);
   setInterval(function(){
       mainloop.update();
       mainloop.draw();
+      var canvas =document.getElementById("mycanvas");
+var content = canvas.getContext("2d");
+content.beginPath();
+content.moveTo(0,10);
+content.lineTo(420,10);
+content.lineTo(420,215);
+content.lineTo(110,215);
+content.lineTo(110, 280);
+content.stroke();
+content.beginPath();
+content.moveTo(0,45);
+content.lineTo(390,45);
+content.lineTo(390,176);
+content.lineTo(80,176);
+content.lineTo(80,280);
+content.stroke();
   }, 1000/100);
 });
 
@@ -142,17 +186,18 @@ playButton.addEventListener('click', function(){
 
 // refreshes the game renders the game
 
-setInterval(function(){
-    mainloop.update();
-    mainloop.draw();
-}, 1000/30);
+document.addEventListener('dragend', function(event) {
+  canvas = document.getElementById('mycanvas');
+  rect = canvas.getBoundingClientRect();
+  var tower = new Tower(event.clientX - rect.left, event.clientY - rect.top);
+  tower.xcord = event.clientX - rect.left;
+  tower.ycord = event.clientY - rect.top;
+  tower.drawTower();
+})
 
-
-
-
-
-
-
+function createTower() {
+  mainloop.addTower(xcord, ycord);
+}
 
 </script>
 
@@ -160,5 +205,4 @@ setInterval(function(){
 
 
 
-</p>
 
