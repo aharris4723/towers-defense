@@ -44,7 +44,7 @@ body{
 	background-repeat: no-repeat;
     border: 2px solid black;
 	background-color: brown;
-  margin-top: 10vmax;
+    margin-top: 10vmax;
 	margin-left: auto;
 	margin-top: 10vmax;
 	margin-left: 350px;
@@ -151,4 +151,28 @@ body{
 	width: 25px;
 	height: 40px;
 	margin: 0 auto;
+}
+.button{
+	border-radius:100px;
+    text-decoration: none;
+    color: black;
+    background-color: red;
+    border: 2px solid black;
+    text-shadow: 1px 1px white;
+    font-family: 'Audiowide', cursive;
+    position: absolute;
+    top:5vmax;
+    left:12vmax;
+}
+#start{
+	position: absolute;
+    top:20vmax;
+    left:12vmax;
+
+}
+#pause{
+	position: absolute;
+    top:20vmax;
+    left:6vmax;
+
 }
