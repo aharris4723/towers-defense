@@ -1,250 +1,292 @@
+
+
+
 <div id="wrapper">
+
+
     <div>
-        <div style="text-align: center; display: inline-block; width: 20vw, width: 100%;">
-            <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
-            <div id="tower1" class="draggable">
-                <p> You can drag one element </p>
-            </div>
-            <div id="tower2" class="draggable" draggable="true">
-                <p> with each pointer </p>
-            </div>
+
+  <div style= "text-align: center; display: inline-block; width: 20vw, width: 100%;">
+
+
+      <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
+
+        <div id="tower1" class="draggable">
+          <p> You can drag one element </p>
         </div>
-        <div class="draggable">
-            <div draggable="true" class="drag_select">
-            </div>
+
+      <div id="tower2" class="draggable" draggable="true">
+        <p> with each pointer </p>
+      </div>
+
+
+  </div>
+
+    <div class="draggable">
+        <div draggable="true" class="drag_select">
         </div>
-        <button id="start" class="button">start</button>
-        <div id="pauseButton"></div>
-        <button id="pause" class="button">pause</button>
-        <audio id="songs">
-            <source src="assets/themesong.mp3">
-        </audio>
-        <div id='directions'>
-            <h1 id="instructions-title">HOW TO PLAY</h1>
-            <p id="instructions">What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                <!-- <div style= "text-align: center; display: inline-block; width: 20vw"> -->
-                <!-- <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas> -->
-                <!-- <img id="image"> -->
-                <img id="image" width="80" , height="80" src="/assets/dawey.png">
-            </p>
+
+</div>
+    <button id="start" class="button"></button>
+    <button id="pause" class="button"></button>
+ <audio id="songs" >
+        <source src="assets/themesong.mp3">
+
+
+    </audio>
+
+<div id= 'directions'>
+    <h1 id="instructions-title">HOW TO PLAY</h1>
+    <p id="instructions">What is Lorem Ipsum?
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+Why do we use it?
+It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+
+
+
+
+
+
+
+<!-- <div style= "text-align: center; display: inline-block; width: 20vw"> -->
+<!-- <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas> -->
+
+<!-- <img id="image"> -->
+
+
+<img id="image" width="80", height="80" src="/assets/dawey.png">
+</p>
+</div>
+</div>
+
+<img id="image" width="80", height="80" src="/assets/dawey.png" style= "display:none">
+<img id="tower_image" width="50", height="50" src="/assets/archer.png" style= "display:none">
+
+
+<button class='button' type="button" id="play_button" >Play Game</button>
+
+<div id="comments-section">
+ 
+ <% @comments.each do |c| %>
+     <p id="comments"><%= c.content %></p>
+        <% end %>
+
+           <h1 id="create-a-comment">COMMENT</h1>
+
+  
+  <%= form_for Comment.new do |f| %>
+
+  <div id="comment-wrapper">
+  
+      <div><%= f.text_area :content %></div>
+      <div><%= f.submit %></div>
+        <% end %>
+
         </div>
+      </div>
     </div>
-    <img id="image" width="80" , height="80" src="/assets/dawey.png" style="display:none">
-    <img id="tower_image" width="50" , height="50" src="/assets/archer.png" style="display:none">
-    <button type="button" id="play_button">Play Game</button>
-    <script>
-    // the information about goblin
-    class Goblin {
-        constructor() {
-            this.canvas = document.getElementById('mycanvas');
-            this.context = this.canvas.getContext("2d");
-            this.health = 5.0;
-            this.x = -6.0;
-            this.y = -16.0;
-            this.speed = 2.0;
-            this.image = document.getElementById("image");
-            this.width = 80.0;
-            this.height = 80.0;
+
+
+
+
+<script>
+// the information about goblin
+class Goblin{
+    constructor(){
+        this.canvas = document.getElementById('mycanvas');
+        this.context = this.canvas.getContext("2d");
+        this.health = 3.0;
+        this.x = -6.0;
+        this.y = -16.0;
+        this.speed =2.0;
+        this.image = document.getElementById("image");
+        this.width= 80.0;
+        this.height = 80.0;
+    }
+    draw(){
+        this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
+    }
+    update(){
+        if(this.x != 370 && this.y == -16){
+            this.x += this.speed ;
         }
-        draw() {
-            this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
+        if(this.x == 370 && this.y < 152){
+            this.y += this.speed;
         }
-        update() {
-            if (this.x != 370 && this.y == -16) {
-                this.x += this.speed;
-            }
-            if (this.x == 370 && this.y < 152) {
-                this.y += this.speed;
-            }
-            if (this.y == 152 && this.x > 58) {
-                this.x -= this.speed;
-            }
-            if (this.x == 58 && this.y != -16 && this.y < 225) {
-                this.y += this.speed;
-            }
+        if(this.y == 152 && this.x > 58){
+            this.x -= this.speed;
+        }
+        if(this.x == 58 && this.y!= -16 && this.y < 225){
+            this.y += this.speed;
         }
     }
+}
 
-    var distance2;
-    class Tower {
-        constructor(x, y) {
-            this.canvas = document.getElementById('mycanvas');
-            this.context = this.canvas.getContext("2d");
-            this.damage = 1.0;
-            this.towerImage = document.getElementById('tower_image');
-            this.width = 45.0;
-            this.height = 45.0;
-            this.x = x;
-            this.y = y;
-            this.xcord = x - 25.0;
-            this.ycord = y - 25.0;
-            this.range = 80;
-            this.target = null;
+var distance2;
+class Tower{
+  constructor(x, y) {
+    this.canvas = document.getElementById('mycanvas');
+    this.context = this.canvas.getContext("2d");
+    this.damage = 1.0;
+    this.towerImage = document.getElementById('tower_image');
+    this.width = 45.0;
+    this.height = 45.0;
+    this.x = x;
+    this.y = y;
+    this.xcord = x - 25.0;
+    this.ycord = y - 25.0;
+    this.range = 80;
+    this.target = null;
+   
+  }
+  drawTower(){
+    this.context.drawImage(this.towerImage, this.xcord, this.ycord, this.width, this.height);
+  }
+  findTarget(){
+    if (mainloop.enemies.length === 0){
+      this.target = null;
+    }
+    for (var i = 0; i < mainloop.enemies.length; i++) {
+      var distancex = Math.abs(mainloop.enemies[i].x+37)-Math.abs(this.x+12.5);
+      var distancey = Math.abs(mainloop.enemies[i].y+48)-Math.abs(this.y+12.5);
+      var distance = (distancex*distancex) +(distancey*distancey);
+      var range = this.range * this.range;
+       if(distance < range){
+        this.target = mainloop.enemies[i];
+      return;
+        
+      } 
+      if(distance > (range)){
+        this.target = null;
+      }
+    }
+  }
+}
 
-        }
-        drawTower() {
-            this.context.drawImage(this.towerImage, this.xcord, this.ycord, this.width, this.height);
-        }
-        findTarget() {
-            if (mainloop.enemies.length === 0) {
-                this.target = null;
-            }
-            for (var i = 0; i < mainloop.enemies.length; i++) {
-                var distancex = Math.abs(mainloop.enemies[i].x + 37) - Math.abs(this.x + 12.5);
-                var distancey = Math.abs(mainloop.enemies[i].y + 48) - Math.abs(this.y + 12.5);
-                var distance = (distancex * distancex) + (distancey * distancey);
-                var range = this.range * this.range;
-                if (distance < range) {
-                    this.target = mainloop.enemies[i];
-                    return;
+class Projectile{
+    constructor(x, y, target, damage){
+      this.canvas =document.getElementById("mycanvas");
+      this.content = canvas.getContext("2d");
+        this.target = target;
+        this.damage = damage;
+        this.x = x;
+        this.y = y;
+    }
+    draw(){
+      this.content.moveTo(this.x, this.y);
+      this.content.lineWidth=2;
+      this.content.lineTo(this.target.x+40, this.target.y+40);
+      this.content.stroke();
 
-                }
-                if (distance > (range)) {
-                    this.target = null;
-                }
-            }
-        }
+
+   
+    }
+}
+// the mainloop that runs the game
+class Game{
+    constructor(){
+        this.canvas = document.getElementById('mycanvas');
+        this.context = this.canvas.getContext("2d");
+        this.enemies = [];
+        this.towers = [];
+        this.projectiles=[];
+
     }
 
-    class Projectile {
-        constructor(x, y, target, damage) {
-            this.canvas = document.getElementById("mycanvas");
-            this.content = canvas.getContext("2d");
-            this.target = target;
-            this.damage = damage;
-            this.x = x;
-            this.y = y;
+    addenemy(x, y){
+        var goblin = new Goblin();
+        this.enemies.push(goblin);
+    }
+    addTower(xcord, ycord){
+      var tower = new Tower(xcord, ycord);
+      this.towers.push(tower);
+    }
+    addProjectile(x, y, target, damage){
+      var projectile = new Projectile(x, y, target, damage);
+      this.projectiles.push(projectile);
+    }
+    draw(){
+        this.context.beginPath();
+        this.context.clearRect(0,0,this.canvas.width , this.canvas.height);
+        for (let i =0; i < this.enemies.length; i++){
+            this.enemies[i].draw();
         }
-        draw() {
-            this.content.moveTo(this.x, this.y);
-            this.content.lineWidth = 3;
-            this.content.strokeStyle = "red";
-            this.content.lineTo(this.target.x + 40, this.target.y + 40);
-            this.content.stroke();
-
-
-
+        for (let i = 0; i < this.towers.length; i++) {
+           this.towers[i].drawTower();
+        }
+        for (let i =0; i< this.projectiles.length; i++) {
+          if (this.projectiles[i] != null){
+          this.projectiles[i].draw();
+          this.projectiles[i] =null;
+          } 
         }
     }
-    // the mainloop that runs the game
-    class Game {
-        constructor() {
-            this.canvas = document.getElementById('mycanvas');
-            this.context = this.canvas.getContext("2d");
-            this.enemies = [];
-            this.towers = [];
-            this.projectiles = [];
-            this.check = false;
-
+    update(){
+        for (var i = 0; i < this.enemies.length; i++) {
+            this.enemies[i].update();
         }
-        addenemy(x, y) {
-            var goblin = new Goblin();
-            this.enemies.push(goblin);
-        }
-        addTower(xcord, ycord) {
-            var tower = new Tower(xcord, ycord);
-            if (this.towers.length == 0) {
-                this.towers.push(tower);
-            } else if (this.towers.length >= 1) {
-                for (var i = 0; i < this.towers.length; i++) {
-                    var distancex = Math.abs(tower.x - this.towers[i].x);
-                    var distancey = Math.abs(tower.y - this.towers[i].y);
-                    var distance = (distancex * distancex) + (distancey + distancey);
-                    if (distance >= 400) {
-                        this.check = true;
-                    } else {
-                        this.check = false;
-                    }
-                }
-            }
-            if (this.check === true) {
-                this.towers.push(tower);
-                this.check = false;
-            }
-        }
-        addProjectile(x, y, target, damage) {
-            var projectile = new Projectile(x, y, target, damage);
-            this.projectiles.push(projectile);
-        }
-        draw() {
-            this.context.beginPath();
-            this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            for (let i = 0; i < this.enemies.length; i++) {
-                this.enemies[i].draw();
-            }
-            for (let i = 0; i < this.towers.length; i++) {
-                this.towers[i].drawTower();
-            }
-            for (let i = 0; i < this.projectiles.length; i++) {
-                if (this.projectiles[i] != null) {
-                    this.projectiles[i].draw();
-                    this.projectiles[i] = null;
-                }
-            }
-        }
-        update() {
-            for (var i = 0; i < this.enemies.length; i++) {
-                this.enemies[i].update();
-            }
-            for (var i = 0; i < this.towers.length; i++) {
-                this.towers[i].findTarget();
-            }
+        for (var i = 0; i < this.towers.length; i++) {
+          this.towers[i].findTarget();
         }
     }
+}
 
-    var mainloop = new Game();
+var mainloop = new Game();
 
-    var playButton = document.getElementById('play_button');
-    var xcord;
-    var ycord;
-    var rect;
+var playButton = document.getElementById('play_button');
+var xcord;
+var ycord;
+var rect;
 
-    playButton.addEventListener('click', function() {
+playButton.addEventListener('click', function(){
 
-        setInterval(function() {
-            mainloop.addenemy();
-        }, 2000);
-        setInterval(function() {
-            for (var i = 0; i < mainloop.towers.length; i++) {
-                if (mainloop.towers[i].target != null) {
-                    mainloop.addProjectile(mainloop.towers[i].x, mainloop.towers[i].y, mainloop.towers[i].target, mainloop.towers[i].damage)
-                }
-            }
-        }, 1000 / 2);
-        setInterval(function() {
-            mainloop.update();
-            mainloop.draw();
-            //       var canvas =document.getElementById("mycanvas");
-            // var content = canvas.getContext("2d");
-            // content.beginPath();
-            // content.moveTo(0,10);
-            // content.lineTo(420,10);
-            // content.lineTo(420,215);
-            // content.lineTo(110,215);
-            // content.lineTo(110, 280);
-            // content.stroke();
-            // content.beginPath();
-            // content.moveTo(0,45);
-            // content.lineTo(390,45);
-            // content.lineTo(390,176);
-            // content.lineTo(80,176);
-            // content.lineTo(80,280);
-            // content.stroke();
-        }, 1000 / 30);
-    });
-
-
-    // the spawner
+  setInterval(function(){
+      mainloop.addenemy();
+  },2000);
+  setInterval(function(){
+    for (var i = 0; i < mainloop.towers.length; i++) {
+      if(mainloop.towers[i].target != null){
+        mainloop.addProjectile(mainloop.towers[i].x, mainloop.towers[i].y, mainloop.towers[i].target, mainloop.towers[i].damage)
+      }
+    }
+  },1000/2);
+  setInterval(function(){
+      mainloop.update();
+      mainloop.draw();
+//       var canvas =document.getElementById("mycanvas");
+// var content = canvas.getContext("2d");
+// content.beginPath();
+// content.moveTo(0,10);
+// content.lineTo(420,10);
+// content.lineTo(420,215);
+// content.lineTo(110,215);
+// content.lineTo(110, 280);
+// content.stroke();
+// content.beginPath();
+// content.moveTo(0,45);
+// content.lineTo(390,45);
+// content.lineTo(390,176);
+// content.lineTo(80,176);
+// content.lineTo(80,280);
+// content.stroke();
+  }, 1000/30);
+});
 
 
-    // refreshes the game renders the game
+// the spawner
 
-    document.addEventListener('dragend', function(event) {
-        canvas = document.getElementById('mycanvas');
-        rect = canvas.getBoundingClientRect();
-        mainloop.addTower((event.clientX) - rect.left, (event.clientY) - rect.top);
-        console.log(event.clientX - rect.left);
-        console.log(event.clientY - rect.top);
 
-    })
-    </script>             
+// refreshes the game renders the game
+
+document.addEventListener('dragend', function(event) {
+  canvas = document.getElementById('mycanvas');
+  rect = canvas.getBoundingClientRect();
+  mainloop.addTower((event.clientX) - rect.left, (event.clientY) - rect.top);
+  console.log(event.clientX-rect.left);
+  console.log(event.clientY-rect.top);
+})
+
+
+
+</script>
