@@ -4,10 +4,11 @@
 
 }
 body{
-	background-color: black;
+	background-color:black;
 
 
 }
+
 /*#monster{
 	height: 200px;
 	width: 200px;
@@ -44,10 +45,8 @@ body{
 	background-repeat: no-repeat;
     border: 2px solid black;
 	background-color: brown;
-  margin-top: 10vmax;
-	margin-left: auto;
-	margin-top: 10vmax;
-	margin-left: 350px;
+    margin-top: 10vmax;
+	margin-left: 20vmax;
 	margin-right: auto;
 	border: 2px solid black;
 	background-color: brown;
@@ -96,6 +95,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-color: black;
+    padding-bottom: 10vmax;
 }
 #instructions{
 	text-align: center;
@@ -106,7 +106,7 @@ body{
 	margin-left: 2%;
 	margin-right: 2%;
 	text-shadow: 2px 2px orange;
-	padding-bottom: 3vmax;
+	padding-bottom: 20vmax;
 	border-bottom: 5px solid orange;
 
 
@@ -151,4 +151,83 @@ body{
 	width: 25px;
 	height: 40px;
 	margin: 0 auto;
+}
+.button{
+	height:50px; 
+	width:50px;
+    text-decoration: none;
+    color: black;
+    background-color: red;
+    border: 2px solid black;
+    text-shadow: 1px 1px white;
+    font-family: 'Audiowide', cursive;
+    
+}
+#start{
+	position: absolute;
+    top:20vmax;
+    left:82vmax;
+    background-image:url('playsound2.png');
+    background-position: center;
+    background-size: 100% 100%;
+
+}
+#pause{
+	position: absolute;
+    top:20vmax;
+    left:86vmax;
+    background-image:url('mutesound.png');
+    background-position: center;
+    background-size: 100% 100%;
+
+}
+#play_button{
+	border-radius: 50%;
+	position: absolute;
+    top:30vmax;
+    left:22vmax;
+    height: 80px;
+    width: 80px;
+}
+#create-a-comment{
+
+	margin-top:1%;
+	text-align: center;
+	font-family: 'Black Ops One', cursive;
+	color:red;
+	text-shadow: 10px 10px 10px black;
+	font-size:6vmax;
+	background-color: red;
+}
+#comment-wrapper{
+	padding-top: 2%;
+	margin-top:1%;
+	text-align: center;
+	font-family: 'Black Ops One', cursive;
+/*	color:black*//*;*/
+	text-shadow: 5px 5px orange;
+	background-color:red;
+}
+
+#comments{
+	text-align: center;
+    font-family: 'Audiowide', cursive;
+	text-shadow: 2px 2px black;
+	font-size: 20pt;
+	margin-top: 5%;
+	margin-left: auto;
+	margin-right:auto;
+	height: 50px;
+	width: 30%;
+	box-shadow: 5px 5px 5px 5px black;
+	background-color: red;
+	color:orange;
+}
+
+#comments-section{
+	height: auto;
+	width: 100%;
+	margin: 0 auto;
+	background-color: red;
+	border-bottom: 10px solid red;
 }

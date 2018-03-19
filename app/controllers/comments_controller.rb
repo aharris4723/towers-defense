@@ -16,7 +16,7 @@ def index
 		@comment.user_id = user.id
 		if @comment.save
 			# redirect_back(fallback_location: comments_path)
-			redirect_to "/comments"
+			redirect_to "/game"
 		else
 			redirect_back(fallback_location: comments_path)
 		end
