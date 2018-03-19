@@ -100,6 +100,7 @@ class Goblin{
     }
 }
 
+var distance2;
 class Tower{
   constructor(x, y) {
     this.canvas = document.getElementById('mycanvas');
@@ -112,7 +113,7 @@ class Tower{
     this.y = y;
     this.xcord = x - 25.0;
     this.ycord = y - 25.0;
-    this.range = 40.0;
+    this.range = 80;
     this.target = null;
    
   }
@@ -124,12 +125,16 @@ class Tower{
       this.target = null;
     }
     for (var i = 0; i < mainloop.enemies.length; i++) {
-      var distance2 = ((mainloop.enemies[i].x-this.x)*(mainloop.enemies[i].x-this.x)) + ((mainloop.enemies[i].y-this.y)*(mainloop.enemies[i].y-this.y));
-      console.log(distance2, this.range *this.range);
-       if(distance2 < (this.range * this.range)){
+      var distancex = Math.abs(mainloop.enemies[i].x+37)-Math.abs(this.x+12.5);
+      var distancey = Math.abs(mainloop.enemies[i].y+48)-Math.abs(this.y+12.5);
+      var distance = (distancex*distancex) +(distancey*distancey);
+      var range = this.range * this.range;
+       if(distance < range){
         this.target = mainloop.enemies[i];
+      return;
+        
       } 
-      if(distance2 > (this.range * this.range)){
+      if(distance > (range)){
         this.target = null;
       }
     }
@@ -147,9 +152,12 @@ class Projectile{
     }
     draw(){
       this.content.moveTo(this.x, this.y);
-      this.content.lineTo(this.target.x+40.0, this.target.y+40.0);
+      this.content.lineWidth=2;
+      this.content.lineTo(this.target.x+40, this.target.y+40);
       this.content.stroke();
-      console.log("i shoot");
+
+
+   
     }
 }
 // the mainloop that runs the game
@@ -187,7 +195,7 @@ class Game{
         for (let i =0; i< this.projectiles.length; i++) {
           if (this.projectiles[i] != null){
           this.projectiles[i].draw();
-          this.projectiles[i] = null;
+          this.projectiles[i] =null;
           } 
         }
     }
@@ -210,7 +218,7 @@ var rect;
 
 playButton.addEventListener('click', function(){
 
-  setTimeout(function(){
+  setInterval(function(){
       mainloop.addenemy();
   },2000);
   setInterval(function(){
@@ -219,26 +227,26 @@ playButton.addEventListener('click', function(){
         mainloop.addProjectile(mainloop.towers[i].x, mainloop.towers[i].y, mainloop.towers[i].target, mainloop.towers[i].damage)
       }
     }
-  },1000/1);
+  },1000/2);
   setInterval(function(){
       mainloop.update();
       mainloop.draw();
-      var canvas =document.getElementById("mycanvas");
-var content = canvas.getContext("2d");
-content.beginPath();
-content.moveTo(0,10);
-content.lineTo(420,10);
-content.lineTo(420,215);
-content.lineTo(110,215);
-content.lineTo(110, 280);
-content.stroke();
-content.beginPath();
-content.moveTo(0,45);
-content.lineTo(390,45);
-content.lineTo(390,176);
-content.lineTo(80,176);
-content.lineTo(80,280);
-content.stroke();
+//       var canvas =document.getElementById("mycanvas");
+// var content = canvas.getContext("2d");
+// content.beginPath();
+// content.moveTo(0,10);
+// content.lineTo(420,10);
+// content.lineTo(420,215);
+// content.lineTo(110,215);
+// content.lineTo(110, 280);
+// content.stroke();
+// content.beginPath();
+// content.moveTo(0,45);
+// content.lineTo(390,45);
+// content.lineTo(390,176);
+// content.lineTo(80,176);
+// content.lineTo(80,280);
+// content.stroke();
   }, 1000/30);
 });
 
@@ -252,8 +260,8 @@ document.addEventListener('dragend', function(event) {
   canvas = document.getElementById('mycanvas');
   rect = canvas.getBoundingClientRect();
   mainloop.addTower((event.clientX) - rect.left, (event.clientY) - rect.top);
-  console.log(event.clientX);
-  console.log(event.clientY);
+  console.log(event.clientX-rect.left);
+  console.log(event.clientY-rect.top);
 })
 
 
