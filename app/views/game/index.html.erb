@@ -38,7 +38,7 @@
         constructor() {
             this.canvas = document.getElementById('mycanvas');
             this.context = this.canvas.getContext("2d");
-            this.health = 3.0;
+            this.health = 5.0;
             this.x = -6.0;
             this.y = -16.0;
             this.speed = 2.0;
@@ -137,7 +137,6 @@
             this.check = false;
 
         }
-
         addenemy(x, y) {
             var goblin = new Goblin();
             this.enemies.push(goblin);
@@ -151,23 +150,18 @@
                     var distancex = Math.abs(tower.x - this.towers[i].x);
                     var distancey = Math.abs(tower.y - this.towers[i].y);
                     var distance = (distancex * distancex) + (distancey + distancey);
-                    if (distance >= 313) {
+                    if (distance >= 375) {
                         this.check = true;
-                    }else{
-                      this.check = false;
+                    } else {
+                        this.check = false;
                     }
-                  }
                 }
-                if (this.check === true){
-                  this.towers.push(tower);
-                  this.check = false;
-                }
-                
-                
-
+            }
+            if (this.check === true) {
+                this.towers.push(tower);
+                this.check = false;
+            }
         }
-
-
         addProjectile(x, y, target, damage) {
             var projectile = new Projectile(x, y, target, damage);
             this.projectiles.push(projectile);
