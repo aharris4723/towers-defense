@@ -90,8 +90,8 @@
                 this.target = null;
             }
             for (var i = 0; i < mainloop.enemies.length; i++) {
-                var distancex = Math.abs(mainloop.enemies[i].x + 37) - Math.abs(this.x + 12.5);
-                var distancey = Math.abs(mainloop.enemies[i].y + 48) - Math.abs(this.y + 12.5);
+                var distancex = (mainloop.enemies[i].x + 37) - (this.x + 12.5);
+                var distancey = (mainloop.enemies[i].y + 48) - (this.y + 12.5);
                 var distance = (distancex * distancex) + (distancey * distancey);
                 var range = this.range * this.range;
                 if (distance < range) {
@@ -134,7 +134,7 @@
             this.enemies = [];
             this.towers = [];
             this.projectiles = [];
-            this.check = false;
+            this.check = true;
 
         }
         addenemy(x, y) {
@@ -146,22 +146,20 @@
             if (this.towers.length == 0) {
                 this.towers.push(tower);
             } else if (this.towers.length >= 1) {
+              this.check = true;
                 for (var i = 0; i < this.towers.length; i++) {
-                    var distancex = Math.abs(tower.x - this.towers[i].x);
-                    var distancey = Math.abs(tower.y - this.towers[i].y);
-                    var distance = (distancex * distancex) + (distancey + distancey);
-                    if (distance >= 400) {
-                        this.check = true;
-                    } else {
+                    var distancex = (tower.x+20) - (this.towers[i].x+20);
+                    var distancey = (tower.y+25) - (this.towers[i].y+25);
+                    var distance = (distancex * distancex) + (distancey * distancey); 
+                    if (distance < 600) {
                         this.check = false;
-                    }
                 }
             }
             if (this.check === true) {
                 this.towers.push(tower);
-                this.check = false;
             }
         }
+      }
         addProjectile(x, y, target, damage) {
             var projectile = new Projectile(x, y, target, damage);
             this.projectiles.push(projectile);
