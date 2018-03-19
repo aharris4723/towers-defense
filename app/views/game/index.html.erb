@@ -13,7 +13,6 @@
             <div draggable="true" class="drag_select">
             </div>
         </div>
-      
         <button id="start" class="button">start</button>
         <div id="pauseButton"></div>
         <button id="pause" class="button">pause</button>
@@ -39,101 +38,13 @@
         constructor() {
             this.canvas = document.getElementById('mycanvas');
             this.context = this.canvas.getContext("2d");
-            this.health = 3.0;
+            this.health = 5.0;
             this.x = -6.0;
             this.y = -16.0;
             this.speed = 2.0;
             this.image = document.getElementById("image");
             this.width = 80.0;
             this.height = 80.0;
-          
-</div>
-    <button id="start" class="button"></button>
-    <button id="pause" class="button"></button>
- <audio id="songs" >
-        <source src="assets/themesong.mp3">
-
-
-    </audio>
-
-<div id= 'directions'>
-    <h1 id="instructions-title">HOW TO PLAY</h1>
-    <p id="instructions">What is Lorem Ipsum?
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-Why do we use it?
-It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-
-
-
-
-
-
-
-<!-- <div style= "text-align: center; display: inline-block; width: 20vw"> -->
-<!-- <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas> -->
-
-<!-- <img id="image"> -->
-
-
-<img id="image" width="80", height="80" src="/assets/dawey.png">
-</p>
-</div>
-</div>
-
-<img id="image" width="80", height="80" src="/assets/dawey.png" style= "display:none">
-<img id="tower_image" width="50", height="50" src="/assets/archer.png" style= "display:none">
-
-
-<button class='button' type="button" id="play_button" >Play Game</button>
-
-<div id="comments-section">
- 
- <% @comments.each do |c| %>
-     <p id="comments"><%= c.content %></p>
-        <% end %>
-
-           <h1 id="create-a-comment">COMMENT</h1>
-
-  
-  <%= form_for Comment.new do |f| %>
-
-  <div id="comment-wrapper">
-  
-      <div><%= f.text_area :content %></div>
-      <div><%= f.submit %></div>
-        <% end %>
-
-        </div>
-      </div>
-    </div>
-
-
-
-
-<script>
-// the information about goblin
-class Goblin{
-    constructor(){
-        this.canvas = document.getElementById('mycanvas');
-        this.context = this.canvas.getContext("2d");
-        this.health = 3.0;
-        this.x = -6.0;
-        this.y = -16.0;
-        this.speed =2.0;
-        this.image = document.getElementById("image");
-        this.width= 80.0;
-        this.height = 80.0;
-    }
-    draw(){
-        this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
-    }
-    update(){
-        if(this.x != 370 && this.y == -16){
-            this.x += this.speed ;
-        }
-        if(this.x == 370 && this.y < 152){
-            this.y += this.speed;
         }
         draw() {
             this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -226,7 +137,6 @@ class Goblin{
             this.check = false;
 
         }
-
         addenemy(x, y) {
             var goblin = new Goblin();
             this.enemies.push(goblin);
@@ -240,23 +150,18 @@ class Goblin{
                     var distancex = Math.abs(tower.x - this.towers[i].x);
                     var distancey = Math.abs(tower.y - this.towers[i].y);
                     var distance = (distancex * distancex) + (distancey + distancey);
-                    if (distance >= 313) {
+                    if (distance >= 375) {
                         this.check = true;
-                    }else{
-                      this.check = false;
+                    } else {
+                        this.check = false;
                     }
-                  }
                 }
-                if (this.check === true){
-                  this.towers.push(tower);
-                  this.check = false;
-                }
-                
-                
-
+            }
+            if (this.check === true) {
+                this.towers.push(tower);
+                this.check = false;
+            }
         }
-
-
         addProjectile(x, y, target, damage) {
             var projectile = new Projectile(x, y, target, damage);
             this.projectiles.push(projectile);
@@ -342,4 +247,4 @@ class Goblin{
         console.log(event.clientY - rect.top);
 
     })
-    </script>
+    </script>             
