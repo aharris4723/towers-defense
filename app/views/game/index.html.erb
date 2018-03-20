@@ -136,6 +136,9 @@
             this.towers = [];
             this.projectiles = [];
             this.check = true;
+            this.checkroads = true;
+            this.road_x = [0.0, 42.0, 84.0, 126.0, 168.0, 210.0, 252.0, 294.0, 336.0, 378.0, 384.0, 384.0, 384.0, 384.0, 384.0, 342.0, 298.0, 254.0, 210.0, 166.0, 122.0, 78.0, 74.0, 74.0];
+            this.road_y = [11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 45.0, 79.0, 113.0, 147.0, 181.0, 178.0, 178.0, 178.0, 178.0, 178.0, 178.0, 178.0, 212.0, 246.0];
 
         }
         addenemy(x, y) {
@@ -144,6 +147,15 @@
         }
         addTower(xcord, ycord) {
             var tower = new Tower(xcord, ycord);
+            this.checkroads = true;
+            for (var z = 0; z < this.road_x.length; z ++){
+              var distRoadX = (tower.x) - this.road_x[z];
+              var distRoadY = (tower.y) - this.road_y[z];
+              var distRoad = (distRoadX * distRoadX) + (distRoadY * distRoadY);
+                if(distRoad < 2920){
+                  this.checkroads = false;
+                }
+            }
             if (this.towers.length == 0) {
                 this.towers.push(tower);
             } else if (this.towers.length >= 1) {
@@ -152,15 +164,15 @@
                     var distancex = (tower.x+20) - (this.towers[i].x+20);
                     var distancey = (tower.y+25) - (this.towers[i].y+25);
                     var distance = (distancex * distancex) + (distancey * distancey); 
-                    if (distance < 600) {
+                    if (distance < 500) {
                         this.check = false;
+                    }
                 }
-            }
-            if (this.check === true) {
+            if (this.check === true && this.checkroads ===true) {
                 this.towers.push(tower);
             }
+          }
         }
-      }
         addProjectile(x, y, target, damage) {
             var projectile = new Projectile(x, y, target, damage);
             this.projectiles.push(projectile);
