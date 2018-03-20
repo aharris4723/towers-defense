@@ -40,7 +40,7 @@
             this.context = this.canvas.getContext("2d");
             this.health = 5.0;
             this.x = -6.0;
-            this.y = -16.0;
+            this.y = -25.0;
             this.speed = 2.0;
             this.image = document.getElementById("image");
             this.width = 80.0;
@@ -50,16 +50,16 @@
             this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
         }
         update() {
-            if (this.x != 370 && this.y == -16) {
+            if (this.x < 360 && this.y == -25.0) {
                 this.x += this.speed;
             }
-            if (this.x == 370 && this.y < 152) {
+            if (this.x == 360 && this.y < 135) {
                 this.y += this.speed;
             }
-            if (this.y == 152 && this.x > 58) {
+            if (this.y == 135 && this.x > 48) {
                 this.x -= this.speed;
             }
-            if (this.x == 58 && this.y != -16 && this.y < 225) {
+            if (this.x == 48 && this.y != -25.0 && this.y < 225) {
                 this.y += this.speed;
             }
         }
@@ -149,14 +149,14 @@
             var tower = new Tower(xcord, ycord);
             this.checkroads = true;
             for (var z = 0; z < this.road_x.length; z ++){
-              var distRoadX = (tower.x) - this.road_x[z];
-              var distRoadY = (tower.y) - this.road_y[z];
+              var distRoadX = (tower.x-10) - this.road_x[z];
+              var distRoadY = (tower.y+6) - this.road_y[z];
               var distRoad = (distRoadX * distRoadX) + (distRoadY * distRoadY);
-                if(distRoad < 2920){
+                if(distRoad < 2500){
                   this.checkroads = false;
                 }
             }
-            if (this.towers.length == 0) {
+            if (this.towers.length == 0 && this.checkroads === true) {
                 this.towers.push(tower);
             } else if (this.towers.length >= 1) {
               this.check = true;
@@ -192,13 +192,16 @@
                     this.projectiles[i] = null;
                 }
             }
+              //  for (let i = 0; i <this.road_x.length; i ++){
+              //   this.context.fillRect(this.road_x[i], this.road_y[i], 42, 34);
+              // }
         }
         update() {
             for (var i = 0; i < this.enemies.length; i++) {
                 if ( this.enemies[i].health > 0){
-                this.enemies[i].update();
+                  this.enemies[i].update();
                 }else{
-                this.enemies.splice(i, i+1);
+                  this.enemies.splice(i, i+1);
                 }
             }
             for (var i = 0; i < this.towers.length; i++) {
@@ -245,7 +248,7 @@
             // content.lineTo(80,176);
             // content.lineTo(80,280);
             // content.stroke();
-        }, 1000 / 30);
+        }, 1000 / 100);
     });
 
 
