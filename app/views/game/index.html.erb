@@ -199,7 +199,10 @@
         update() {
             for (var i = 0; i < this.enemies.length; i++) {
                 if ( this.enemies[i].health > 0){
-                  this.enemies[i].update();
+                  this.enemies[i].update()
+                    if( this.enemies[i].y == 225){
+                      this.enemies.splice(i, i+1);
+                    }
                 }else{
                   this.enemies.splice(i, i+1);
                 }
@@ -248,7 +251,7 @@
             // content.lineTo(80,176);
             // content.lineTo(80,280);
             // content.stroke();
-        }, 1000 / 100);
+        }, 1000 / 30);
     });
 
 
