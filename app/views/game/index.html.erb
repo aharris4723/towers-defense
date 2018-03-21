@@ -2,7 +2,11 @@
     <div>
         <div style="text-align: center; display: inline-block; width: 20vw, width: 100%;">
             <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
-            <div id="upgrade">Upgrade Tower Damage</div>
+            <div id="upgrade">
+                Upgrade Tower Damage<br>
+                <div id="upgradeMultiplier"></div>
+                <div id="upgradeCost"></div>
+            </div>
             <div id="money"></div>
 
         </div>
@@ -121,7 +125,7 @@
             this.y = y;
             this.xcord = x - 25.0;
             this.ycord = y - 25.0;
-            this.range = 55;
+            this.range = 59;
             this.target = null;
 
         }
@@ -287,6 +291,8 @@
 
         update() {
           document.getElementById('money').innerHTML= "Cash: " + this.cash;
+          document.getElementById('upgradeMultiplier').innerHTML= "Current Multiplier: " + mainloop.damage;
+          document.getElementById('upgradeCost').innerHTML= "Cost: $" + mainloop.upgradeCost;
             for (var i = 0; i < this.enemies.length; i++) {
                 if ( this.enemies[i].health > 0){
                   this.enemies[i].update()
@@ -362,6 +368,7 @@ var towerArcher = document.getElementById('tower1')
 
       }
     })
+
     </script>
 
     <div id="comments-section">
