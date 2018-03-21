@@ -36,7 +36,7 @@
     <img id="tower_image1" width="50" , height="50" src="/assets/sword.png" style="display:none">
     <button type="button" id="play_button">Play Game</button>
     <script>
-    
+
     // the information about goblin
     class Goblin {
         constructor(health) {
@@ -147,7 +147,7 @@
                 }
             }
         }
-       
+
     }
 
     class Projectile {
@@ -166,7 +166,7 @@
             this.content.lineTo(this.target.x + 40, this.target.y + 40);
             this.target.health -= this.damage;
             this.content.stroke();
-            
+
 
 
         }
@@ -205,7 +205,8 @@
                 if(distRoad < 2500){
                   this.checkroads = false;
                 }
-            }
+
+
             if (this.towers.length == 0 && this.checkroads === true) {
                 this.cash -=50;
                 this.towers.push(tower);
@@ -219,7 +220,7 @@
                     } else {
                     var distancex = (tower.x+20) - (this.towers[i].x+20);
                     var distancey = (tower.y+25) - (this.towers[i].y+25);
-                    var distance = (distancex * distancex) + (distancey * distancey); 
+                    var distance = (distancex * distancex) + (distancey * distancey);
                     if (distance < 500) {
 
                         this.check = false;
@@ -231,6 +232,9 @@
                 this.check = false;
             }
         }
+      }
+      }
+    }
 
         addTower1(xcord, ycord) {
             var tower1 = new Tower1(xcord, ycord);
@@ -246,14 +250,16 @@
                     } else {
                         this.check = false;
                     }
-                }
-            }
+
+
             if (this.check === true) {
                 this.towers1.push(tower1);
                 this.check = false;
             }
           }
         }
+      }
+
         addProjectile(x, y, target, damage) {
             var projectile = new Projectile(x, y, target, damage);
             this.projectiles.push(projectile);
@@ -282,7 +288,7 @@
           this.cash -= this.upgradeCost;
           this.upgradeCost = this.upgradeCost * 3;
           }
-        
+
         update() {
           document.getElementById('money').innerHTML= "Cash: " + this.cash;
             for (var i = 0; i < this.enemies.length; i++) {
@@ -304,7 +310,7 @@
                 this.towers1[i].findTarget();
             }
         }
-    }
+      }
 
     var mainloop = new Game();
 
@@ -313,11 +319,11 @@
     var ycord;
     var rect;
     playButton.addEventListener('click', function() {
-        
+
 
         setInterval(function () {
           mainloop.addenemy(mainloop.count/2);
-          
+
         }, 2000);
         setInterval(function() {
             for (var i = 0; i < mainloop.towers.length; i++) {
@@ -375,5 +381,4 @@ var towerArcher = document.getElementById('tower1')
 
       }
     })
-    </script>             
-
+    </script>
