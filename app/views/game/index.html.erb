@@ -27,7 +27,7 @@
                 <!-- <div style= "text-align: center; display: inline-block; width: 20vw"> -->
                 <!-- <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas> -->
                 <!-- <img id="image"> -->
-                <img id="image" width="80" , height="80" src="/assets/dawey.png">
+                
             </p>
         </div>
     </div>
@@ -69,15 +69,15 @@
         }
     }
 
-    var distance2;
+    
     class Tower {
         constructor(x, y, damage) {
             this.canvas = document.getElementById('mycanvas');
             this.context = this.canvas.getContext("2d");
-            this.damage = 1.0 * damage;
             this.towerImage = document.getElementById('tower_image');
             this.width = 45.0;
             this.height = 45.0;
+            this.damage = damage;
             this.x = x;
             this.y = y;
             this.xcord = x - 25.0;
@@ -110,10 +110,10 @@
     }
 
     class Tower1 {
-        constructor(x, y) {
+        constructor(x, y, damage) {
             this.canvas = document.getElementById('mycanvas');
             this.context = this.canvas.getContext("2d");
-            this.damage = 1.0;
+            this.damage = damage*2;
             this.towerImage1 = document.getElementById('tower_image1');
             this.width = 45.0;
             this.height = 45.0;
@@ -121,11 +121,11 @@
             this.y = y;
             this.xcord = x - 25.0;
             this.ycord = y - 25.0;
-            this.range = 60;
+            this.range = 55;
             this.target = null;
 
         }
-        drawTower1() {
+        drawTower() {
             this.context.drawImage(this.towerImage1, this.xcord, this.ycord, this.width, this.height);
         }
         findTarget() {
@@ -195,7 +195,7 @@
             var goblin = new Goblin(health);
             this.enemies.push(goblin);
         }
-        addTower(xcord, ycord, damage) {
+       addTower(xcord, ycord, damage) {
             var tower = new Tower(xcord, ycord, damage);
             this.checkroads = true;
             for (var z = 0; z < this.road_x.length; z ++){
@@ -205,60 +205,59 @@
                 if(distRoad < 2500){
                   this.checkroads = false;
                 }
-
-
+            }
             if (this.towers.length == 0 && this.checkroads === true) {
                 this.cash -=50;
                 this.towers.push(tower);
             } else if (this.towers.length >= 1) {
+              this.check = true;
                 for (var i = 0; i < this.towers.length; i++) {
-                    var distancex = Math.abs(tower.x - this.towers[i].x);
-                    var distancey = Math.abs(tower.y - this.towers[i].y);
-                    var distance = (distancex * distancex) + (distancey + distancey);
-                    if (distance >= 400) {
-                        this.check = true;
-                    } else {
                     var distancex = (tower.x+20) - (this.towers[i].x+20);
                     var distancey = (tower.y+25) - (this.towers[i].y+25);
-                    var distance = (distancex * distancex) + (distancey * distancey);
+                    var distance = (distancex * distancex) + (distancey * distancey); 
                     if (distance < 500) {
-
                         this.check = false;
                     }
                 }
             if (this.check === true && this.checkroads ===true && this.cash >=50) {
               this.cash -= 50;
                 this.towers.push(tower);
-                this.check = false;
-            }
-        }
-      }
-      }
-    }
-
-        addTower1(xcord, ycord) {
-            var tower1 = new Tower1(xcord, ycord);
-            if (this.towers1.length == 0) {
-                this.towers1.push(tower1);
-            } else if (this.towers1.length >= 1) {
-                for (var i = 0; i < this.towers1.length; i++) {
-                    var distancex = Math.abs(tower1.x - this.towers1[i].x);
-                    var distancey = Math.abs(tower1.y - this.towers1[i].y);
-                    var distance = (distancex * distancex) + (distancey + distancey);
-                    if (distance >= 400) {
-                        this.check = true;
-                    } else {
-                        this.check = false;
-                    }
-
-
-            if (this.check === true) {
-                this.towers1.push(tower1);
-                this.check = false;
+                
             }
           }
         }
-      }
+
+        addTower1(xcord, ycord, damage) {
+            var tower1 = new Tower1(xcord, ycord, damage);
+            this.checkroads = true;
+            for (var z = 0; z < this.road_x.length; z ++){
+              var distRoadX = (tower1.x-10) - this.road_x[z];
+              var distRoadY = (tower1.y+6) - this.road_y[z];
+              var distRoad = (distRoadX * distRoadX) + (distRoadY * distRoadY);
+                if(distRoad < 2500){
+                  this.checkroads = false;
+                }
+            }
+            if (this.towers.length == 0 && this.checkroads === true) {
+                this.cash -=100;
+                this.towers.push(tower1);
+            } else if (this.towers.length >= 1) {
+              this.check = true;
+                for (var i = 0; i < this.towers.length; i++) {
+                    var distancex = (tower1.x+20) - (this.towers[i].x+20);
+                    var distancey = (tower1.y+25) - (this.towers[i].y+25);
+                    var distance = (distancex * distancex) + (distancey * distancey); 
+                    if (distance < 500) {
+                        this.check = false;
+                    }
+                }
+            if (this.check === true && this.checkroads ===true && this.cash >=100) {
+              this.cash -= 100;
+                this.towers.push(tower1);
+                
+            }
+          }
+        }
 
         addProjectile(x, y, target, damage) {
             var projectile = new Projectile(x, y, target, damage);
@@ -272,9 +271,6 @@
             }
             for (let i = 0; i < this.towers.length; i++) {
                 this.towers[i].drawTower();
-            }
-            for (let i = 0; i < this.towers1.length; i++) {
-                this.towers1[i].drawTower1();
             }
             for (let i = 0; i < this.projectiles.length; i++) {
                 if (this.projectiles[i] != null) {
@@ -306,9 +302,6 @@
             for (var i = 0; i < this.towers.length; i++) {
                 this.towers[i].findTarget();
             }
-            for (var i = 0; i < this.towers1.length; i++) {
-                this.towers1[i].findTarget();
-            }
         }
       }
 
@@ -328,12 +321,7 @@
         setInterval(function() {
             for (var i = 0; i < mainloop.towers.length; i++) {
                 if (mainloop.towers[i].target != null) {
-                    mainloop.addProjectile(mainloop.towers[i].x, mainloop.towers[i].y, mainloop.towers[i].target, mainloop.damage)
-                }
-            }
-            for (var i = 0; i < mainloop.towers1.length; i++) {
-                if (mainloop.towers1[i].target != null) {
-                    mainloop.addProjectile(mainloop.towers1[i].x, mainloop.towers1[i].y, mainloop.towers1[i].target, mainloop.towers1[i].damage)
+                    mainloop.addProjectile(mainloop.towers[i].x, mainloop.towers[i].y, mainloop.towers[i].target, (mainloop.towers[i].damage * mainloop.damage));
                 }
             }
         }, 1000 / 2);
@@ -353,7 +341,7 @@ var towerArcher = document.getElementById('tower1')
     towerArcher.addEventListener('dragend', function(event) {
         canvas = document.getElementById('mycanvas');
         rect = canvas.getBoundingClientRect();
-        mainloop.addTower((event.clientX) - rect.left, (event.clientY) - rect.top);
+        mainloop.addTower((event.clientX) - rect.left, (event.clientY) - rect.top, mainloop.damage);
         // console.log(event.clientX - rect.left);
         // console.log(event.clientY - rect.top);
     });
@@ -362,7 +350,7 @@ var towerArcher = document.getElementById('tower1')
       towerSword.addEventListener('dragend', function(event) {
           canvas = document.getElementById('mycanvas');
           rect = canvas.getBoundingClientRect();
-          mainloop.addTower1((event.clientX) - rect.left, (event.clientY) - rect.top);
+          mainloop.addTower1((event.clientX) - rect.left, (event.clientY) - rect.top, mainloop.damage);
           // console.log(event.clientX - rect.left);
           // console.log(event.clientY - rect.top);
       });
