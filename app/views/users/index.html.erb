@@ -3,7 +3,11 @@
 
   
        <% @users.each do |u| %>
-   <div id="comments"><%= u.username %></div>
+   <div id="scores"><%= u.email %>
+   	                    <br>
+   	                <%= u.score %>
+   </div>
+
        <% end %>
 
 
