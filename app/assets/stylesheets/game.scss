@@ -10,24 +10,37 @@ body{
 }
 #upgrade{
 	width:200px;
+<<<<<<< HEAD
 	height:55px;
 	background-color: lightblue;
+=======
+	height:50px;
+	background-color:lime;
+	border: 1px solid yellow;
+>>>>>>> 7cc522af4108b7507919ec8c94e80b09d92e1a1d
 	display: inline-block;
 	text-align:center;
 	vertical-align: middle;
 	padding: 5px;
-	margin-left: 10px;
+    position: absolute;
+    top:30vmax;
+    left:70vmax;
+    font-family: 'Press Start 2P', cursive;
 }
 
 #money{
 	width:200px;
 	height:20px;
-	background-color: lightblue;
+	background-color:lime;
+	border: 1px solid yellow;
 	display: inline-block;
 	text-align:center;
 	vertical-align: middle;
 	padding: 5px;
-	margin-left: 10px;
+    position: absolute;
+    top:35vmax;
+    left:70vmax;
+    font-family: 'Press Start 2P', cursive;
 }
 /*#monster{
 	height: 200px;
@@ -66,7 +79,7 @@ body{
     border: 2px solid black;
 	background-color: brown;
     margin-top: 10vmax;
-	margin-left: 20vmax;
+	margin-left: 1vmax;
 	margin-right: auto;
 	border: 2px solid black;
 	background-color: brown;
@@ -197,9 +210,12 @@ body{
 	border-radius: 50%;
 	position: absolute;
     top:30vmax;
-    left:22vmax;
+    left:15vmax;
     height: 80px;
     width: 80px;
+    font-family: 'Audiowide', cursive;
+    background-color:red;
+    color:yellow;
 }
 #create-a-comment{
 
