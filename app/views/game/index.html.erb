@@ -358,8 +358,8 @@ var towerArcher = document.getElementById('tower1')
         // console.log(event.clientY - rect.top);
     });
 
-  var towerBullet = document.getElementById('tower2')
-      towerBullet.addEventListener('dragend', function(event) {
+  var towerSword = document.getElementById('tower2')
+      towerSword.addEventListener('dragend', function(event) {
           canvas = document.getElementById('mycanvas');
           rect = canvas.getBoundingClientRect();
           mainloop.addTower1((event.clientX) - rect.left, (event.clientY) - rect.top);
@@ -367,12 +367,11 @@ var towerArcher = document.getElementById('tower1')
           // console.log(event.clientY - rect.top);
       });
 
-    </script>
-        mainloop.addTower((event.clientX) - rect.left, (event.clientY) - rect.top, mainloop.damage);
-        console.log(event.clientX - rect.left);
-        console.log(event.clientY - rect.top);
-
-    })
+    //     mainloop.addTower((event.clientX) - rect.left, (event.clientY) - rect.top, mainloop.damage);
+    //     console.log(event.clientX - rect.left);
+    //     console.log(event.clientY - rect.top);
+    //
+    // })
 
     var upgrade = document.getElementById("upgrade");
     upgrade.addEventListener("click", function(){
