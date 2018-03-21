@@ -1,5 +1,5 @@
 #high-score-wrapper{
-	background-color: gray;
+	background-color: black;
 	height:100%;
 	width:100%;
 }
@@ -9,5 +9,18 @@
 	font-family: 'Black Ops One', cursive;
 	color:red;
 	text-shadow: 2px 2px orange;
-	font-size:10vmax;
+	font-size:6vmax;
+}
+#scores{
+	text-align: center;
+    font-family: 'Audiowide', cursive;
+	text-shadow: 2px 2px red;
+	font-size: 20pt;
+	margin-top: 5%;
+	margin-left: auto;
+	margin-right:auto;
+	height: 50px;
+	width: 30%;
+	box-shadow: 5px 5px 5px 5px red;
+	color:orange;
 }
