@@ -367,12 +367,6 @@ var towerArcher = document.getElementById('tower1')
           // console.log(event.clientY - rect.top);
       });
 
-    //     mainloop.addTower((event.clientX) - rect.left, (event.clientY) - rect.top, mainloop.damage);
-    //     console.log(event.clientX - rect.left);
-    //     console.log(event.clientY - rect.top);
-    //
-    // })
-
     var upgrade = document.getElementById("upgrade");
     upgrade.addEventListener("click", function(){
       if (mainloop.cash >= mainloop.upgradeCost){
@@ -381,3 +375,24 @@ var towerArcher = document.getElementById('tower1')
       }
     })
     </script>
+
+    <div id="comments-section">
+
+ <% @comments.each do |c| %>
+     <p id="comments"><%= c.content %></p>
+        <% end %>
+
+           <h1 id="create-a-comment">COMMENT</h1>
+
+
+  <%= form_for Comment.new do |f| %>
+
+<% if user_signed_in? %>
+<div id="comment-wrapper">
+
+    <div><%= f.text_area :content %></div>
+    <div><%= f.submit %></div>
+      <% end %>
+ </div>
+<% end %>
+    </div>
