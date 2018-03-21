@@ -2,14 +2,18 @@
     <div>
         <div style="text-align: center; display: inline-block; width: 20vw, width: 100%;">
             <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
+            <div id="score"></div>
             <div id="upgrade">
                <div>Upgrade Towers</div>
                <br>
                 <div id="upgradeMultiplier"></div>
                 <br>
                 <div id="upgradeCost"></div>
+                <br>
             </div>
             <div id="money"></div>
+            <div id="lives"></div>
+
 
         </div>
 
@@ -33,7 +37,7 @@
                 <!-- <div style= "text-align: center; display: inline-block; width: 20vw"> -->
                 <!-- <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas> -->
                 <!-- <img id="image"> -->
-                
+
             </p>
         </div>
     </div>
@@ -75,7 +79,7 @@
         }
     }
 
-    
+
     class Tower {
         constructor(x, y, damage) {
             this.canvas = document.getElementById('mycanvas');
@@ -195,6 +199,8 @@
             this.count = 10;
             this.upgradeCost = 200;
             this.damage = 1;
+            this.score = 0
+            this.lives = 5;
 
         }
         addenemy(health) {
@@ -220,7 +226,7 @@
                 for (var i = 0; i < this.towers.length; i++) {
                     var distancex = (tower.x+20) - (this.towers[i].x+20);
                     var distancey = (tower.y+25) - (this.towers[i].y+25);
-                    var distance = (distancex * distancex) + (distancey * distancey); 
+                    var distance = (distancex * distancex) + (distancey * distancey);
                     if (distance < 500) {
                         this.check = false;
                     }
@@ -228,7 +234,7 @@
             if (this.check === true && this.checkroads ===true && this.cash >=50) {
               this.cash -= 50;
                 this.towers.push(tower);
-                
+
             }
           }
         }
@@ -252,7 +258,7 @@
                 for (var i = 0; i < this.towers.length; i++) {
                     var distancex = (tower1.x+20) - (this.towers[i].x+20);
                     var distancey = (tower1.y+25) - (this.towers[i].y+25);
-                    var distance = (distancex * distancex) + (distancey * distancey); 
+                    var distance = (distancex * distancex) + (distancey * distancey);
                     if (distance < 500) {
                         this.check = false;
                     }
@@ -260,7 +266,7 @@
             if (this.check === true && this.checkroads ===true && this.cash >=100) {
               this.cash -= 100;
                 this.towers.push(tower1);
-                
+
             }
           }
         }
@@ -295,16 +301,22 @@
           document.getElementById('money').innerHTML= "Cash: " + this.cash;
           document.getElementById('upgradeMultiplier').innerHTML= "Multiplier: " + mainloop.damage + "x";
           document.getElementById('upgradeCost').innerHTML= "Cost: $" + mainloop.upgradeCost;
+          document.getElementById('score').innerHTML="Score: " +mainloop.score;
+          document.getElementById('lives').innerHTML="Lives: " + mainloop.lives;
             for (var i = 0; i < this.enemies.length; i++) {
                 if ( this.enemies[i].health > 0){
                   this.enemies[i].update()
                     if( this.enemies[i].y == 225){
                       this.enemies.splice(i, i+1);
+                      this.lives -= 1
+                    }if (this.lives === 0) {
+                      return window.location.reload();            
                     }
                 }else if (this.enemies[i].health <= 0){
                   this.enemies.splice(i, 1);
                   this.count += 0.5;
                   this.cash += this.count/4;
+                  this.score += 100;
                 }
             }
             for (var i = 0; i < this.towers.length; i++) {
