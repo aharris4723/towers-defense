@@ -2,12 +2,8 @@
     <div>
         <div style="text-align: center; display: inline-block; width: 20vw, width: 100%;">
             <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
-            <div id="tower1" class="draggable">
-                <p> You can drag one element </p>
-            </div>
-            <div id="tower2" class="draggable" draggable="true">
-                <p> with each pointer </p>
-            </div>
+            <div id="upgrade">Upgrade Tower Damage</div>
+            <div id="money"></div>
         </div>
         <div class="draggable">
             <div draggable="true" class="drag_select">
@@ -33,14 +29,15 @@
     <img id="tower_image" width="50" , height="50" src="/assets/archer.png" style="display:none">
     <button type="button" id="play_button">Play Game</button>
     <script>
+    
     // the information about goblin
     class Goblin {
-        constructor() {
+        constructor(health) {
             this.canvas = document.getElementById('mycanvas');
             this.context = this.canvas.getContext("2d");
-            this.health = 5.0;
+            this.health = health;
             this.x = -6.0;
-            this.y = -16.0;
+            this.y = -25.0;
             this.speed = 2.0;
             this.image = document.getElementById("image");
             this.width = 80.0;
@@ -50,16 +47,16 @@
             this.context.drawImage(this.image, this.x, this.y, this.width, this.height);
         }
         update() {
-            if (this.x != 370 && this.y == -16) {
+            if (this.x < 360 && this.y == -25.0) {
                 this.x += this.speed;
             }
-            if (this.x == 370 && this.y < 152) {
+            if (this.x == 360 && this.y < 135) {
                 this.y += this.speed;
             }
-            if (this.y == 152 && this.x > 58) {
+            if (this.y == 135 && this.x > 48) {
                 this.x -= this.speed;
             }
-            if (this.x == 58 && this.y != -16 && this.y < 225) {
+            if (this.x == 48 && this.y != -25.0 && this.y < 225) {
                 this.y += this.speed;
             }
         }
@@ -67,10 +64,10 @@
 
     var distance2;
     class Tower {
-        constructor(x, y) {
+        constructor(x, y, damage) {
             this.canvas = document.getElementById('mycanvas');
             this.context = this.canvas.getContext("2d");
-            this.damage = 1.0;
+            this.damage = 1.0 * damage;
             this.towerImage = document.getElementById('tower_image');
             this.width = 45.0;
             this.height = 45.0;
@@ -80,7 +77,6 @@
             this.ycord = y - 25.0;
             this.range = 80;
             this.target = null;
-
         }
         drawTower() {
             this.context.drawImage(this.towerImage, this.xcord, this.ycord, this.width, this.height);
@@ -104,6 +100,7 @@
                 }
             }
         }
+       
     }
 
     class Projectile {
@@ -120,7 +117,7 @@
             this.content.lineWidth = 3;
             this.content.strokeStyle = "red";
             this.content.lineTo(this.target.x + 40, this.target.y + 40);
-            this.target.health -= 1;
+            this.target.health -= this.damage;
             this.content.stroke();
             
 
@@ -136,15 +133,31 @@
             this.towers = [];
             this.projectiles = [];
             this.check = true;
-
+            this.checkroads = true;
+            this.road_x = [0.0, 42.0, 84.0, 126.0, 168.0, 210.0, 252.0, 294.0, 336.0, 378.0, 384.0, 384.0, 384.0, 384.0, 384.0, 342.0, 298.0, 254.0, 210.0, 166.0, 122.0, 78.0, 74.0, 74.0];
+            this.road_y = [11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 11.0, 45.0, 79.0, 113.0, 147.0, 181.0, 178.0, 178.0, 178.0, 178.0, 178.0, 178.0, 178.0, 212.0, 246.0];
+            this.cash = 100;
+            this.count = 10;
+            this.upgradeCost = 200;
+            this.damage = 1;
         }
-        addenemy(x, y) {
-            var goblin = new Goblin();
+        addenemy(health) {
+            var goblin = new Goblin(health);
             this.enemies.push(goblin);
         }
-        addTower(xcord, ycord) {
-            var tower = new Tower(xcord, ycord);
-            if (this.towers.length == 0) {
+        addTower(xcord, ycord, damage) {
+            var tower = new Tower(xcord, ycord, damage);
+            this.checkroads = true;
+            for (var z = 0; z < this.road_x.length; z ++){
+              var distRoadX = (tower.x-10) - this.road_x[z];
+              var distRoadY = (tower.y+6) - this.road_y[z];
+              var distRoad = (distRoadX * distRoadX) + (distRoadY * distRoadY);
+                if(distRoad < 2500){
+                  this.checkroads = false;
+                }
+            }
+            if (this.towers.length == 0 && this.checkroads === true) {
+                this.cash -=50;
                 this.towers.push(tower);
             } else if (this.towers.length >= 1) {
               this.check = true;
@@ -152,15 +165,17 @@
                     var distancex = (tower.x+20) - (this.towers[i].x+20);
                     var distancey = (tower.y+25) - (this.towers[i].y+25);
                     var distance = (distancex * distancex) + (distancey * distancey); 
-                    if (distance < 600) {
+                    if (distance < 500) {
                         this.check = false;
+                    }
                 }
-            }
-            if (this.check === true) {
+            if (this.check === true && this.checkroads ===true && this.cash >=50) {
+              this.cash -= 50;
                 this.towers.push(tower);
+                
             }
+          }
         }
-      }
         addProjectile(x, y, target, damage) {
             var projectile = new Projectile(x, y, target, damage);
             this.projectiles.push(projectile);
@@ -180,18 +195,31 @@
                     this.projectiles[i] = null;
                 }
             }
-        }
+          }
+          upgradeTower(){
+          this.damage= this.damage *2;
+          this.cash -= this.upgradeCost;
+          this.upgradeCost = this.upgradeCost * 3;
+          }
+        
         update() {
+          document.getElementById('money').innerHTML= "Cash: " + this.cash;
             for (var i = 0; i < this.enemies.length; i++) {
                 if ( this.enemies[i].health > 0){
-                this.enemies[i].update();
-                }else{
-                this.enemies.splice(i, i+1);
+                  this.enemies[i].update()
+                    if( this.enemies[i].y == 225){
+                      this.enemies.splice(i, i+1);
+                    }
+                }else if (this.enemies[i].health <= 0){
+                  this.enemies.splice(i, 1);
+                  this.count += 0.5;
+                  this.cash += this.count/4;
                 }
             }
             for (var i = 0; i < this.towers.length; i++) {
                 this.towers[i].findTarget();
             }
+
         }
     }
 
@@ -201,38 +229,23 @@
     var xcord;
     var ycord;
     var rect;
-
     playButton.addEventListener('click', function() {
+        
 
-        setInterval(function() {
-            mainloop.addenemy();
+        setInterval(function () {
+          mainloop.addenemy(mainloop.count/2);
+          
         }, 2000);
         setInterval(function() {
             for (var i = 0; i < mainloop.towers.length; i++) {
                 if (mainloop.towers[i].target != null) {
-                    mainloop.addProjectile(mainloop.towers[i].x, mainloop.towers[i].y, mainloop.towers[i].target, mainloop.towers[i].damage)
+                    mainloop.addProjectile(mainloop.towers[i].x, mainloop.towers[i].y, mainloop.towers[i].target, mainloop.damage)
                 }
             }
         }, 1000 / 2);
         setInterval(function() {
             mainloop.update();
             mainloop.draw();
-            //       var canvas =document.getElementById("mycanvas");
-            // var content = canvas.getContext("2d");
-            // content.beginPath();
-            // content.moveTo(0,10);
-            // content.lineTo(420,10);
-            // content.lineTo(420,215);
-            // content.lineTo(110,215);
-            // content.lineTo(110, 280);
-            // content.stroke();
-            // content.beginPath();
-            // content.moveTo(0,45);
-            // content.lineTo(390,45);
-            // content.lineTo(390,176);
-            // content.lineTo(80,176);
-            // content.lineTo(80,280);
-            // content.stroke();
         }, 1000 / 30);
     });
 
@@ -245,9 +258,17 @@
     document.addEventListener('dragend', function(event) {
         canvas = document.getElementById('mycanvas');
         rect = canvas.getBoundingClientRect();
-        mainloop.addTower((event.clientX) - rect.left, (event.clientY) - rect.top);
+        mainloop.addTower((event.clientX) - rect.left, (event.clientY) - rect.top, mainloop.damage);
         console.log(event.clientX - rect.left);
         console.log(event.clientY - rect.top);
 
+    })
+
+    var upgrade = document.getElementById("upgrade");
+    upgrade.addEventListener("click", function(){
+      if (mainloop.cash >= mainloop.upgradeCost){
+        mainloop.upgradeTower();
+
+      }
     })
     </script>             
