@@ -18,7 +18,7 @@ var displaybox = document.getElementById("displaybox")
 
 start.addEventListener('click',juke.playIt)
 pause.addEventListener('click',juke.pauseIt)
-skip.addEventListener('click',juke.skipIt)
+// skip.addEventListener('click',juke.skipIt)
 
 
 
