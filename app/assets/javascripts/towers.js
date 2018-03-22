@@ -1,71 +1,79 @@
-window.onload = function(){
-
-var start = document.getElementById("start")
-var pause = document.getElementById("pause")
-var skip = document.getElementById("next")
-var songs = ["assets/themesong.mp3"]
-
-
-var audio = new Audio();
-var currentSong = 0;
-    audio.src =songs[currentSong]
-
-
-
-
-var juke = new Jukebox();
-var displaybox = document.getElementById("displaybox")
-
-start.addEventListener('click',juke.playIt)
-pause.addEventListener('click',juke.pauseIt)
-// skip.addEventListener('click',juke.skipIt)
-
-
-
-
-    function Jukebox(){
-        this.playIt = function(){
-            console.log('asdfasdf')
-            audio.play()
-            
+class Tower {
+    constructor(x, y, damage) {
+        this.canvas = document.getElementById('mycanvas');
+        this.context = this.canvas.getContext("2d");
+        this.towerImage = document.getElementById('tower_image');
+        this.width = 45.0;
+        this.height = 45.0;
+        this.damage = damage;
+        this.x = x;
+        this.y = y;
+        this.xcord = x - 25.0;
+        this.ycord = y - 25.0;
+        this.range = 80;
+        this.target = null;
+    }
+    drawTower() {
+        this.context.drawImage(this.towerImage, this.xcord, this.ycord, this.width, this.height);
+    }
+    findTarget() {
+        if (mainloop.enemies.length === 0) {
+            this.target = null;
         }
+        for (var i = 0; i < mainloop.enemies.length; i++) {
+            var distancex = Math.abs(mainloop.enemies[i].x + 37) - Math.abs(this.x + 12.5);
+            var distancey = Math.abs(mainloop.enemies[i].y + 48) - Math.abs(this.y + 12.5);
+            var distance = (distancex * distancex) + (distancey * distancey);
+            var range = this.range * this.range;
+            if (distance < range) {
+                this.target = mainloop.enemies[i];
+                return;
 
-        this.pauseIt = function(){
-            audio.pause()
+            }
+            if (distance > (range)) {
+                this.target = null;
+            }
         }
+    }
+}
 
-        this.skipIt = function(){
-            if(currentSong === songs.length -1){
-                currentSong = 0;
-                audio.src = songs[currentSong];
-                audio.play()
-            }else {
-                currentSong++;
-                audio.src = songs[currentSong]
-                audio.play()
-            }    
+class Tower1 {
+    constructor(x, y, damage) {
+        this.canvas = document.getElementById('mycanvas');
+        this.context = this.canvas.getContext("2d");
+        this.damage = damage * 4;
+        this.towerImage1 = document.getElementById('tower_image1');
+        this.width = 45.0;
+        this.height = 45.0;
+        this.x = x;
+        this.y = y;
+        this.xcord = x - 25.0;
+        this.ycord = y - 25.0;
+        this.range = 59;
+        this.target = null;
+
+    }
+    drawTower() {
+        this.context.drawImage(this.towerImage1, this.xcord, this.ycord, this.width, this.height);
+    }
+    findTarget() {
+        if (mainloop.enemies.length === 0) {
+            this.target = null;
+        }
+        for (var i = 0; i < mainloop.enemies.length; i++) {
+            var distancex = Math.abs(mainloop.enemies[i].x + 37) - Math.abs(this.x + 12.5);
+            var distancey = Math.abs(mainloop.enemies[i].y + 48) - Math.abs(this.y + 12.5);
+            var distance = (distancex * distancex) + (distancey * distancey);
+            var range = this.range * this.range;
+            if (distance < range) {
+                this.target = mainloop.enemies[i];
+                return;
+
+            }
+            if (distance > (range)) {
+                this.target = null;
+            }
         }
     }
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
