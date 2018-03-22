@@ -2,29 +2,29 @@
     <div>
         <div class="towers_defense" style="text-align: center; display: inline-block; width: 20vw, width: 100%;">
             <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas" class="towers_defense"></canvas>
-            <div class="towers-_defense" id="score"></div>
-            <div class="towers_defense" id="upgrade">
-               <div class="towers_defense">Upgrade Towers</div>
+            <div id="score"></div>
+            <div id="upgrade">
+               <div id="upgrade_tower_text">Upgrade Towers</div>
                <br>
-                <div class="towers_defense" id="upgradeMultiplier"></div>
+                <div id="upgradeMultiplier"></div>
                 <br>
-                <div class="towers-defense" id="upgradeCost"></div>
+                <div id="upgradeCost"></div>
                 <br>
             </div>
-            <div class="towers_defense" id="money"></div>
-            <div class="towers_defense" id="lives"></div>
+            <div id="money"></div>
+            <div id="lives"></div>
 
 
         </div>
 
-        <div class="towers_defense">
+        <div>
           <div draggable="true" class="drag_select" id="tower1"></div>
         </div>
 
-        <div class="towers_defense">
+        <div>
           <div draggable="true" class="drag_select" id="tower2"></div>
         </div>
-        
+
         <button id="start" class="button">start</button>
         <div id="pauseButton"></div>
         <button id="pause" class="button">pause</button>
@@ -310,7 +310,7 @@
                       this.enemies.splice(i, i+1);
                       this.lives -= 1
                     }if (this.lives === 0) {
-                      return window.location.reload();            
+                      return window.location.reload();
                     }
                 }else if (this.enemies[i].health <= 0){
                   this.enemies.splice(i, 1);
@@ -331,13 +331,19 @@
     var xcord;
     var ycord;
     var rect;
-    
+
     playButton.addEventListener('click', function() {
-        
+      document.getElementById('tower1').style.display = 'block';
+      document.getElementById('tower2').style.display = 'block';
+      document.getElementById('upgrade').style.display = 'block';
+      document.getElementById('money').style.display = 'inline-block';
+      document.getElementById('score').style.display = 'block';
+      document.getElementById('lives').style.display = 'block';
+      document.getElementById('start').style.display = 'block';
+      document.getElementById('pause').style.display = 'block';
+      document.getElementById('play_button').style.display = 'none';
 
         setInterval(function () {
-           
-         
           mainloop.addenemy(mainloop.count/2);
 
         }, 2000);

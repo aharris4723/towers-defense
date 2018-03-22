@@ -29,7 +29,7 @@ body{
 	height:20px;
 	background-color:lime;
 	border: 1px solid yellow;
-	display: inline-block;
+	display: none;
 	text-align:center;
 	vertical-align: middle;
 	padding: 5px;
@@ -48,6 +48,7 @@ body{
 	left: 70vmax;
 	top: 28vmax;
 	font-family: 'Press Start 2P', cursive;
+	display: none;
 }
 
 #lives{
@@ -59,6 +60,7 @@ body{
 	left: 70vmax;
 	top: 26vmax;
 	font-family: 'Press Start 2P', cursive;
+	display: none;
 }
 /*#monster{
 	height: 200px;
@@ -116,27 +118,6 @@ body{
 	vertical-align: middle;
 }
 
-/*#grass{
-	background-image: url(grass.jpg);
-	background-size:cover;
-
-
-	margin-left: 400px;
-	margin-right: auto;
-	position: absolute;
-	top:60.5%;
-	left:.35%;
-	background-color: green;
-	height: 70px;
-	width: 500px;
-
-
-	background: url("grid.png");
-	background-size:cover;
-	background-repeat: no-repeat;
-
-}*/
-
 #directions{
 	width:100%;
     height:400px;
@@ -159,9 +140,8 @@ body{
 	text-shadow: 2px 2px orange;
 	padding-bottom: 20vmax;
 	border-bottom: 5px solid orange;
-
-
 }
+
 #instructions-title{
 	margin-top: 3%;
 	text-align: center;
@@ -179,9 +159,9 @@ body{
 	height: 4.9vmax;
 	margin: 0 auto;
 	position: absolute;
-    top:40vmax;
-    left:73vmax;
- 
+  top:40vmax;
+  left:50vmax;
+	display: none;
 }
 
 #tower2{
@@ -192,9 +172,9 @@ body{
 	height: 4.9vmax;
 	margin: 0 auto;
 	position: absolute;
-    top:40vmax;
-    left:79vmax;
-    
+  top:40vmax;
+	left:45vmax;
+	display: none;
 }
 
 .drag_select{
@@ -203,6 +183,7 @@ body{
 	height: 40px;
 	margin: 0 auto;
 }
+
 .button{
 	height:50px;
 	width:50px;
@@ -212,8 +193,12 @@ body{
     border: 2px solid black;
     text-shadow: 1px 1px white;
     font-family: 'Audiowide', cursive;
-
 }
+
+#upgrade{
+	display: none;
+}
+
 #start{
 	position: absolute;
     top:20vmax;
@@ -221,8 +206,9 @@ body{
     background-image:url('playsound2.png');
     background-position: center;
     background-size: 100% 100%;
-
+		display: none;
 }
+
 #pause{
 	position: absolute;
     top:20vmax;
@@ -230,8 +216,9 @@ body{
     background-image:url('mutesound.png');
     background-position: center;
     background-size: 100% 100%;
-
+		display: none;
 }
+
 #play_button{
 	border-radius: 50%;
 	position: absolute;
@@ -284,7 +271,4 @@ body{
 	margin: 0 auto;
 	background-color: red;
 	border-bottom: 10px solid red;
-}
-.towers_defense{
-	display: block;
 }
