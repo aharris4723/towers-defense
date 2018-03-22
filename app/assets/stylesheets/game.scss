@@ -1,7 +1,7 @@
 *{
 	padding: 0%;
 	margin: 0%;
-	user-select: none; 
+	user-select: none;
 	/*border: 1px solid white;*/
 
 }
@@ -136,12 +136,10 @@ body{
 }
 #instructions{
 	text-align: center;
-	color:red;
+	color: white;
 	font-family: 'Audiowide', cursive;
-	font-size: 15pt;
-	margin-top: 5%;
-	margin-left: 2%;
-	margin-right: 2%;
+	font-size: 2.8vmax;
+margin: 5px;
 	text-shadow: 2px 2px orange;
 	padding-bottom: 20vmax;
 	border-bottom: 5px solid orange;
@@ -164,8 +162,8 @@ body{
 	height: 4.9vmax;
 	margin: 0 auto;
 	position: absolute;
-    top:46vmax;
-    left:50vmax;
+    top:35vmax;
+    left:25vmax;
 	display: none;
 }
 
@@ -177,8 +175,8 @@ body{
 	height: 4.9vmax;
 	margin: 0 auto;
 	position: absolute;
-    top:46vmax;
-	left:45vmax;
+    top:35vmax;
+	left:20vmax;
 	display: none;
 }
 
@@ -202,6 +200,9 @@ body{
 
 #upgrade{
 	display: none;
+}
+#upgrade:hover{
+	cursor: pointer;
 }
 
 #start{
@@ -246,8 +247,7 @@ body{
 	background-color: red;
 }
 #comment-wrapper{
-	padding-top: 2%;
-	margin-top:1%;
+	margin-top:1vmax;
 	text-align: center;
 	font-family: 'Black Ops One', cursive;
 /*	color:black*//*;*/
@@ -260,9 +260,7 @@ body{
     font-family: 'Audiowide', cursive;
 	text-shadow: 2px 2px black;
 	font-size: 20pt;
-	margin-top: 5%;
-	margin-left: auto;
-	margin-right:auto;
+	margin-top: 3vmax;
 	height: 50px;
 	width: 30%;
 	box-shadow: 5px 5px 5px 5px black;
@@ -273,10 +271,12 @@ body{
 #comments-section{
 	height: auto;
 	width: 100%;
-	margin: 0 auto;
+	margin: 5px auto;
 	background-color: red;
 	border-bottom: 10px solid red;
+	padding: 0.1vmax;
 }
+
 #restart{
 	border-radius: 50%;
 	position: absolute;
