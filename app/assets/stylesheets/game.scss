@@ -164,7 +164,7 @@ body{
 	height: 4.9vmax;
 	margin: 0 auto;
 	position: absolute;
-    top:45vmax;
+    top:46vmax;
     left:50vmax;
 	display: none;
 }
@@ -177,7 +177,7 @@ body{
 	height: 4.9vmax;
 	margin: 0 auto;
 	position: absolute;
-    top:45vmax;
+    top:46vmax;
 	left:45vmax;
 	display: none;
 }
@@ -276,4 +276,19 @@ body{
 	margin: 0 auto;
 	background-color: red;
 	border-bottom: 10px solid red;
+}
+#restart{
+	border-radius: 50%;
+	position: absolute;
+    top:11vmax;
+    left:11vmax;
+    height:80px;
+    width: 80px;
+    font-family: 'Audiowide', cursive;
+    background-color:red;
+    color:yellow;
+	display:block;
+	padding:2%;
+	text-align: center;
+	border: 2px solid gray;
 }
