@@ -99,9 +99,9 @@ body{
     margin-top: 10vmax;
 	margin-left: 1vmax;
 	margin-right: auto;
-	border: 2px solid black;
+	/*border: 150px solid red;*/
 	background-color: brown;
-	box-shadow: 5px 5px 5px 5px black;
+	/*box-shadow: 10px 10px 10px 10px black;*/
 	display: inline-block;
 
 }
@@ -172,21 +172,29 @@ body{
 
 }
 
-.draggable_tower1{
+#tower1{
 	background-image: url("/assets/archer.png");
 	background-size: contain;
 	width: 6vmax;
 	height: 4.9vmax;
 	margin: 0 auto;
+	position: absolute;
+    top:40vmax;
+    left:73vmax;
+ 
 }
 
-.draggable_tower2{
+#tower2{
 	background-image: url("/assets/sword.png");
 	background-size: contain;
 	background-repeat: no-repeat;
 	width: 6vmax;
 	height: 4.9vmax;
 	margin: 0 auto;
+	position: absolute;
+    top:40vmax;
+    left:79vmax;
+    
 }
 
 .drag_select{
@@ -276,4 +284,7 @@ body{
 	margin: 0 auto;
 	background-color: red;
 	border-bottom: 10px solid red;
+}
+.towers_defense{
+	display: block;
 }

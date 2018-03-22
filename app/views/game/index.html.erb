@@ -1,27 +1,27 @@
 <div id="wrapper">
     <div>
-        <div style="text-align: center; display: inline-block; width: 20vw, width: 100%;">
-            <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas"></canvas>
-            <div id="score"></div>
-            <div id="upgrade">
-               <div>Upgrade Towers</div>
+        <div class="towers_defense" style="text-align: center; display: inline-block; width: 20vw, width: 100%;">
+            <canvas height="280px" width="500px" style="border:1px solid" id="mycanvas" class="towers_defense"></canvas>
+            <div class="towers-_defense" id="score"></div>
+            <div class="towers_defense" id="upgrade">
+               <div class="towers_defense">Upgrade Towers</div>
                <br>
-                <div id="upgradeMultiplier"></div>
+                <div class="towers_defense" id="upgradeMultiplier"></div>
                 <br>
-                <div id="upgradeCost"></div>
+                <div class="towers-defense" id="upgradeCost"></div>
                 <br>
             </div>
-            <div id="money"></div>
-            <div id="lives"></div>
+            <div class="towers_defense" id="money"></div>
+            <div class="towers_defense" id="lives"></div>
 
 
         </div>
 
-        <div class="draggable_tower1">
+        <div class="towers_defense">
           <div draggable="true" class="drag_select" id="tower1"></div>
         </div>
 
-        <div class="draggable_tower2">
+        <div class="towers_defense">
           <div draggable="true" class="drag_select" id="tower2"></div>
         </div>
         
@@ -41,9 +41,9 @@
             </p>
         </div>
     </div>
-    <img id="image" width="80" , height="80" src="/assets/dawey.png" style="display:none">
-    <img id="tower_image" width="50" , height="50" src="/assets/archer.png" style="display:none">
-    <img id="tower_image1" width="50" , height="50" src="/assets/sword.png" style="display:none">
+    <img class="towers_defense" id="image" width="80" , height="80" src="/assets/dawey.png" style="display:none">
+    <img class="towers_defense" id="tower_image" width="50" , height="50" src="/assets/archer.png" style="display:none">
+    <img  class="towers_defense" id="tower_image1" width="50" , height="50" src="/assets/sword.png" style="display:none">
     <button type="button" id="play_button">Play Game</button>
     <script>
 
@@ -331,10 +331,13 @@
     var xcord;
     var ycord;
     var rect;
+    
     playButton.addEventListener('click', function() {
-
+        
 
         setInterval(function () {
+           
+         
           mainloop.addenemy(mainloop.count/2);
 
         }, 2000);
@@ -382,6 +385,8 @@ var towerArcher = document.getElementById('tower1')
 
       }
     })
+
+
 
     </script>
 
