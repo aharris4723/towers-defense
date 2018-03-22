@@ -1,24 +1,12 @@
-# README
+* Ruby version 2.4.1
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* To install the gems
+  run the command $bundle install
 
-Things you may want to cover:
+* To create the database go into the gemfile
+  enable $gem 'sqlite3'
+  on the console run the command $rails db:migrate
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* To start the application
+    run the command rails s
+    open your web browser and go to http://localhost:3000/
